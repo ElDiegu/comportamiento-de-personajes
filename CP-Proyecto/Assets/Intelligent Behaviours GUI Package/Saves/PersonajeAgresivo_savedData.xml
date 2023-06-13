@@ -1,0 +1,791 @@
+<?xml version="1.0"?>
+<XMLElement xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>106227a7-8ea5-4cf7-9313-dfeb4009fb02</Id>
+  <elemType>FSM</elemType>
+  <secondType />
+  <thirdType />
+  <fourthType />
+  <name>PersonajeAgresivo</name>
+  <windowPosX>149</windowPosX>
+  <windowPosY>273.2</windowPosY>
+  <nodes>
+    <XMLElement>
+      <Id>632ee121-e6ac-4e5d-909f-1c8bca007a14</Id>
+      <elemType>FSM</elemType>
+      <secondType>Entry</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Inactivo</name>
+      <windowPosX>105</windowPosX>
+      <windowPosY>90.2</windowPosY>
+      <nodes>
+        <XMLElement>
+          <Id>390125a0-0c2f-4b0c-a2b6-fa7be0a355b8</Id>
+          <elemType>StateNode</elemType>
+          <secondType>Default</secondType>
+          <thirdType />
+          <fourthType />
+          <name>Moverse</name>
+          <windowPosX>66</windowPosX>
+          <windowPosY>203.2</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <weight>0</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>c11d9046-e928-4bae-87b6-fc411ca48e26</Id>
+          <elemType>StateNode</elemType>
+          <secondType>Entry</secondType>
+          <thirdType />
+          <fourthType />
+          <name>Quieto</name>
+          <windowPosX>614</windowPosX>
+          <windowPosY>168.2</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <weight>0</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+      </nodes>
+      <transitions>
+        <XMLElement>
+          <Id>c6d518b0-2891-4c42-9e99-822f2c769696</Id>
+          <elemType>TransitionGUI</elemType>
+          <secondType />
+          <thirdType />
+          <fourthType />
+          <name>quieto a moverse</name>
+          <windowPosX>300</windowPosX>
+          <windowPosY>167.2</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <fromId>c11d9046-e928-4bae-87b6-fc411ca48e26</fromId>
+          <toId>390125a0-0c2f-4b0c-a2b6-fa7be0a355b8</toId>
+          <perception>
+            <Id>02df43d4-7451-4f98-98dd-0dde4697ae35</Id>
+            <type>Value</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>true</openFoldout>
+          </perception>
+          <weight>1</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>f6214824-cff1-4f3e-bd64-7fafb441819c</Id>
+          <elemType>TransitionGUI</elemType>
+          <secondType />
+          <thirdType />
+          <fourthType />
+          <name>moverse a quieto</name>
+          <windowPosX>370</windowPosX>
+          <windowPosY>237.2</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <fromId>390125a0-0c2f-4b0c-a2b6-fa7be0a355b8</fromId>
+          <toId>c11d9046-e928-4bae-87b6-fc411ca48e26</toId>
+          <perception>
+            <Id>d23c896b-f776-44f5-aac7-39b7ccea22f6</Id>
+            <type>Value</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>true</openFoldout>
+          </perception>
+          <weight>1</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+      </transitions>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>8f9daede-363f-49b8-99de-76645732f7a8</Id>
+      <elemType>FSM</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Combatir</name>
+      <windowPosX>289</windowPosX>
+      <windowPosY>326.2</windowPosY>
+      <nodes>
+        <XMLElement>
+          <Id>d980be86-359a-426e-b155-da59a196be8f</Id>
+          <elemType>StateNode</elemType>
+          <secondType>Entry</secondType>
+          <thirdType />
+          <fourthType />
+          <name>Moverse</name>
+          <windowPosX>50</windowPosX>
+          <windowPosY>49</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <weight>0</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>7a8a2545-7bb8-406d-8b9f-a8e4319df905</Id>
+          <elemType>StateNode</elemType>
+          <secondType>Default</secondType>
+          <thirdType />
+          <fourthType />
+          <name>Atacar</name>
+          <windowPosX>510</windowPosX>
+          <windowPosY>44.1999969</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <weight>0</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>bf5d7a62-1f64-445c-b752-920d3bae0974</Id>
+          <elemType>StateNode</elemType>
+          <secondType>Default</secondType>
+          <thirdType />
+          <fourthType />
+          <name>Descansar</name>
+          <windowPosX>512</windowPosX>
+          <windowPosY>314.2</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <weight>0</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+      </nodes>
+      <transitions>
+        <XMLElement>
+          <Id>d7d1e340-6559-4a11-b294-993f02f6fda2</Id>
+          <elemType>TransitionGUI</elemType>
+          <secondType />
+          <thirdType />
+          <fourthType />
+          <name>moverse a atacar</name>
+          <windowPosX>275</windowPosX>
+          <windowPosY>63.1</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <fromId>d980be86-359a-426e-b155-da59a196be8f</fromId>
+          <toId>7a8a2545-7bb8-406d-8b9f-a8e4319df905</toId>
+          <perception>
+            <Id>b5c6d4bf-a424-434a-8bfc-81901f00601c</Id>
+            <type>Value</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>true</openFoldout>
+          </perception>
+          <weight>1</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>48e3b3e1-d23c-4136-a658-204a8e3e7078</Id>
+          <elemType>TransitionGUI</elemType>
+          <secondType />
+          <thirdType />
+          <fourthType />
+          <name>atacar a descansar</name>
+          <windowPosX>471</windowPosX>
+          <windowPosY>230.700012</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <fromId>7a8a2545-7bb8-406d-8b9f-a8e4319df905</fromId>
+          <toId>bf5d7a62-1f64-445c-b752-920d3bae0974</toId>
+          <perception>
+            <Id>fac7397e-9391-4b65-a22a-1387f8ff3d51</Id>
+            <type>Push</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>false</openFoldout>
+          </perception>
+          <weight>1</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>159ede8a-ac64-4777-9c5a-cc2d7f70180d</Id>
+          <elemType>TransitionGUI</elemType>
+          <secondType />
+          <thirdType />
+          <fourthType />
+          <name>descansar a atacar</name>
+          <windowPosX>541</windowPosX>
+          <windowPosY>160.700012</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <fromId>bf5d7a62-1f64-445c-b752-920d3bae0974</fromId>
+          <toId>7a8a2545-7bb8-406d-8b9f-a8e4319df905</toId>
+          <perception>
+            <Id>2296a79b-011f-4b50-9c36-dc26b6c9ce41</Id>
+            <type>Push</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>false</openFoldout>
+          </perception>
+          <weight>1</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>1e8f2404-9c93-4ece-a082-18dc9f31122c</Id>
+          <elemType>TransitionGUI</elemType>
+          <secondType />
+          <thirdType />
+          <fourthType />
+          <name>descansar a moverse</name>
+          <windowPosX>276</windowPosX>
+          <windowPosY>198.1</windowPosY>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>0</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <fromId>bf5d7a62-1f64-445c-b752-920d3bae0974</fromId>
+          <toId>d980be86-359a-426e-b155-da59a196be8f</toId>
+          <perception>
+            <Id>5f5d75de-3149-41c0-a8f0-c208f25d5d80</Id>
+            <type>Push</type>
+            <timerNumber>0</timerNumber>
+            <elemName />
+            <customName>CustomName</customName>
+            <stateName>Select a State</stateName>
+            <status>Succeed</status>
+            <openFoldout>false</openFoldout>
+          </perception>
+          <weight>1</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+      </transitions>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>594445ce-c8e6-4552-9550-cacfb5380611</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>cogerMoneda</name>
+      <windowPosX>704</windowPosX>
+      <windowPosY>12.2000122</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>aabcf7d2-ae12-4682-a578-9359743b3c3b</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>cogerArmadura</name>
+      <windowPosX>655</windowPosX>
+      <windowPosY>703.2</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>1b138f06-59f5-453b-b892-76eaab5161b7</Id>
+      <elemType>StateNode</elemType>
+      <secondType>Default</secondType>
+      <thirdType />
+      <fourthType />
+      <name>cogerArma</name>
+      <windowPosX>1246</windowPosX>
+      <windowPosY>674.2</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+  </nodes>
+  <transitions>
+    <XMLElement>
+      <Id>679ba1bb-34e9-4455-94c8-4d0d70f25e8f</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>Inactivo a Combatir</name>
+      <windowPosX>653.5</windowPosX>
+      <windowPosY>257.2</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>632ee121-e6ac-4e5d-909f-1c8bca007a14</fromId>
+      <toId>8f9daede-363f-49b8-99de-76645732f7a8</toId>
+      <perception>
+        <Id>690f63e1-1bde-4e05-b401-0941e4f68f05</Id>
+        <type>Value</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>9b9b7675-1b3a-47b4-ab31-26ab16d6fbba</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>combatir a inactivo</name>
+      <windowPosX>583.5</windowPosX>
+      <windowPosY>187.200012</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>8f9daede-363f-49b8-99de-76645732f7a8</fromId>
+      <toId>632ee121-e6ac-4e5d-909f-1c8bca007a14</toId>
+      <perception>
+        <Id>030f6475-8002-4cb3-9bc5-ae7f199d5289</Id>
+        <type>Value</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>3c43a45f-76f5-43b5-991a-e09c30968a07</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>cogerMoneda a inactivo</name>
+      <windowPosX>324</windowPosX>
+      <windowPosY>107.200012</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>594445ce-c8e6-4552-9550-cacfb5380611</fromId>
+      <toId>632ee121-e6ac-4e5d-909f-1c8bca007a14</toId>
+      <perception>
+        <Id>4292e127-dc6c-485c-8cad-fd5f6c0ba9ac</Id>
+        <type>Value</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>88adb5a9-1151-46db-8030-d93f3fafc77f</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>inactivo a cogerMoneda</name>
+      <windowPosX>399</windowPosX>
+      <windowPosY>180.700012</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>632ee121-e6ac-4e5d-909f-1c8bca007a14</fromId>
+      <toId>594445ce-c8e6-4552-9550-cacfb5380611</toId>
+      <perception>
+        <Id>b6c14475-97fa-44fc-80dd-307582763607</Id>
+        <type>Push</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>false</openFoldout>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>5b8fa0f2-ad63-4736-bc61-fb4c824a1b2b</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>cogerArmadura a inactivo</name>
+      <windowPosX>299.5</windowPosX>
+      <windowPosY>452.7</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>aabcf7d2-ae12-4682-a578-9359743b3c3b</fromId>
+      <toId>632ee121-e6ac-4e5d-909f-1c8bca007a14</toId>
+      <perception>
+        <Id>af5f78aa-86c1-4d00-b4d4-098c95d60e4a</Id>
+        <type>Value</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>d057a842-be0d-4873-af12-7c389c8a0f63</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>inactivo a cogerArmadura</name>
+      <windowPosX>374.5</windowPosX>
+      <windowPosY>526.2</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>632ee121-e6ac-4e5d-909f-1c8bca007a14</fromId>
+      <toId>aabcf7d2-ae12-4682-a578-9359743b3c3b</toId>
+      <perception>
+        <Id>13c75f01-2fc2-4b90-b3e4-b9a70f7a5eb3</Id>
+        <type>Value</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>d226967d-1c3f-4918-90f5-7ac4c0ba70dd</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>cogerArma a combatir</name>
+      <windowPosX>1224.5</windowPosX>
+      <windowPosY>436.2</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>1b138f06-59f5-453b-b892-76eaab5161b7</fromId>
+      <toId>8f9daede-363f-49b8-99de-76645732f7a8</toId>
+      <perception>
+        <Id>86968f92-a6b9-48d7-93b8-274896a56e8e</Id>
+        <type>Value</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>5dcd625c-5fcc-44ae-94e9-b4bb4cd39d9a</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>cogerArma a inactivo</name>
+      <windowPosX>595</windowPosX>
+      <windowPosY>438.2</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>1b138f06-59f5-453b-b892-76eaab5161b7</fromId>
+      <toId>632ee121-e6ac-4e5d-909f-1c8bca007a14</toId>
+      <perception>
+        <Id>4ee999f6-65d9-4af2-aeb4-725c0aa6a72f</Id>
+        <type>Value</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+    <XMLElement>
+      <Id>2f3ffff5-a548-4224-9412-0d6198a4834a</Id>
+      <elemType>TransitionGUI</elemType>
+      <secondType />
+      <thirdType />
+      <fourthType />
+      <name>inactivo a cogerArma</name>
+      <windowPosX>670</windowPosX>
+      <windowPosY>511.7</windowPosY>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <fromId>632ee121-e6ac-4e5d-909f-1c8bca007a14</fromId>
+      <toId>1b138f06-59f5-453b-b892-76eaab5161b7</toId>
+      <perception>
+        <Id>d8537b94-058a-4198-a7d3-ff31c48fc030</Id>
+        <type>Value</type>
+        <timerNumber>0</timerNumber>
+        <elemName />
+        <customName>CustomName</customName>
+        <stateName>Select a State</stateName>
+        <status>Succeed</status>
+        <openFoldout>true</openFoldout>
+      </perception>
+      <weight>1</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+  </transitions>
+  <isRandom>false</isRandom>
+  <isInfinite>false</isInfinite>
+  <delayTime>0</delayTime>
+  <Nloops>0</Nloops>
+  <index>0</index>
+  <variableMin>0</variableMin>
+  <variableMax>0</variableMax>
+  <slope>0</slope>
+  <exp>0</exp>
+  <displX>0</displX>
+  <displY>0</displY>
+  <weight>0</weight>
+  <isExit>false</isExit>
+</XMLElement>
