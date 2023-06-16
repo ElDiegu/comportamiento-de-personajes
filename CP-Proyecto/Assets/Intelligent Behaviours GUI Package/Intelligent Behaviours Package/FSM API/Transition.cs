@@ -13,6 +13,7 @@ public class Transition {
     public Perception Perception { get; }
     public State StateTo { get; }
     public BehaviourEngine BehaviourEngine { get; }
+    public Action action = null;
 
     #endregion variables
 
@@ -32,6 +33,20 @@ public class Transition {
         this.StateTo = stateTo;
         this.BehaviourEngine = behaviourEngine;
         this.type = TRANSITION_TYPE.NORMAL;
+
+        BehaviourEngine.Configure(StateFrom)
+            .OnExit(this.Name, () => { Perception.Reset(); });
+    }
+
+    public Transition(string name, State stateFrom, Perception perception, State stateTo, Action action, BehaviourEngine behaviourEngine)
+    {
+        this.Name = name;
+        this.StateFrom = stateFrom;
+        this.Perception = perception;
+        this.StateTo = stateTo;
+        this.BehaviourEngine = behaviourEngine;
+        this.type = TRANSITION_TYPE.NORMAL;
+        this.action = action;
 
         BehaviourEngine.Configure(StateFrom)
             .OnExit(this.Name, () => { Perception.Reset(); });
@@ -62,6 +77,33 @@ public class Transition {
                 .InternalTransition(Perception, this.Name, () => ExitTransition(StateFrom, StateTo, subMachine.GetState("Entry_Machine"), superMachine, subMachine));
         }
         else { // Exits from the sub-machine
+            this.BehaviourEngine = subMachine;
+            Perception.SetBehaviourMachine(subMachine);
+            subMachine.Configure(StateFrom)
+                .OnExit(this.Name, () => Perception.Reset())
+                .InternalTransition(Perception, this.Name, () => ExitTransition(StateFrom, StateTo, subMachine.GetState("Entry_Machine"), superMachine, subMachine));
+        }
+    }
+
+    public Transition(string name, State stateFrom, Perception perception, State stateTo, Action action, BehaviourEngine superMachine, BehaviourEngine subMachine)
+    {
+        this.Name = name;
+        this.StateFrom = stateFrom;
+        this.Perception = perception;
+        this.StateTo = stateTo;
+        this.type = TRANSITION_TYPE.SUPER_TRANSITION;
+        this.action = action;
+
+        if (stateFrom.BehaviourEngine == superMachine)
+        { // Exits from the super-machine
+            this.BehaviourEngine = superMachine;
+            Perception.SetBehaviourMachine(superMachine);
+            superMachine.Configure(StateFrom)
+                .OnExit(this.Name, () => Perception.Reset())
+                .InternalTransition(Perception, this.Name, () => ExitTransition(StateFrom, StateTo, subMachine.GetState("Entry_Machine"), superMachine, subMachine));
+        }
+        else
+        { // Exits from the sub-machine
             this.BehaviourEngine = subMachine;
             Perception.SetBehaviourMachine(subMachine);
             subMachine.Configure(StateFrom)
@@ -245,6 +287,8 @@ public class Transition {
 
             //Entry is done in StateFrom.InternalTransition so there's no need to do the entry again
             if (this.type != TRANSITION_TYPE.SUPER_TRANSITION) StateTo.Entry();
+
+            if (this.action != null) action.Invoke();
 
             return true;
         }

@@ -3,15 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Coin
+  - Weapon
+  - Armor
+  - Entity
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Target
   - Water
   - UI
-  - 
+  - Obstacle
   - 
   - 
   - 
