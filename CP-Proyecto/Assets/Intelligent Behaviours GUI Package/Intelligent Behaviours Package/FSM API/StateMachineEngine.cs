@@ -210,5 +210,20 @@ public class StateMachineEngine : BehaviourEngine {
         }
     }
 
+    public Transition CreateTransition(string transitionName, State stateFrom, Perception perception, State stateTo, Action action)
+    {
+        if (!transitions.ContainsKey(transitionName))
+        {
+            Transition transition = new Transition(transitionName, stateFrom, perception, stateTo, action, this);
+            transitions.Add(transitionName, transition);
+
+            return transition;
+        }
+        else
+        {
+            throw new DuplicateWaitObjectException(transitionName, "The Transition already exists in the state machine");
+        }
+    }
+
     #endregion create transitions
 }

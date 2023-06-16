@@ -145,6 +145,30 @@ public abstract class BehaviourEngine {
         }
     }
 
+    public Transition CreateExitTransition(string transitionName, State stateFrom, Perception perception, State stateTo, Action action)
+    {
+        if (!transitions.ContainsKey(transitionName))
+        {
+            StateMachineEngine superStateMachine = stateTo.BehaviourEngine as StateMachineEngine;
+            Transition exitTransition = new Transition(transitionName, stateFrom, perception, stateTo, action, superStateMachine, this);
+
+            if (stateFrom.BehaviourEngine == superStateMachine)
+            { // Transition managed by the super-state machine
+                superStateMachine.transitions.Add(transitionName, exitTransition);
+            }
+            else
+            { // Transition managed by the sub-state machine
+                transitions.Add(transitionName, exitTransition);
+            }
+
+            return exitTransition;
+        }
+        else
+        {
+            throw new DuplicateWaitObjectException(transitionName, "The transition already exists in the behaviour engine");
+        }
+    }
+
     /// <summary>
     /// Creates a new <see cref="Transition"/> that exits from a State Machine to a Behaviour Tree. ONLY exits to Behaviour Trees
     /// </summary>
