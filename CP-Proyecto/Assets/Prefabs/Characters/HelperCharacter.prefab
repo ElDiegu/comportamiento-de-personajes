@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 6559309645811900133}
   - component: {fileID: 4759643212952886007}
   - component: {fileID: 5011123479087871222}
-  - component: {fileID: 1646861692998458272}
+  - component: {fileID: -4322803843766248060}
   m_Layer: 3
-  m_Name: CowardCharacter
+  m_Name: HelperCharacter
   m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   followingObject: {fileID: 0}
   fleeingEnemy: {fileID: 0}
   maxDistance: 10
-  stamina: 0
+  stamina: 3
   isMoving: 0
   isResting: 0
   isFleeing: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   enemy: {fileID: 0}
   allyHurt: {fileID: 0}
---- !u!114 &1646861692998458272
+--- !u!114 &-4322803843766248060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7523051227320478788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa36028707d9c6f4788dbbd307b50800, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c3fde9bfe2156848b15821c74be8126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   entityMovement: {fileID: 8984804425228190475}

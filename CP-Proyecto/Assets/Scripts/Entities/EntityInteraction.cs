@@ -28,43 +28,52 @@ public class EntityInteraction : MonoBehaviour
         enemyDetected = fow.enemy != null;
         allyHurtDetected = fow.allyHurt != null;
     }
-    public bool SufferDamage(int damage)
+    
+
+    public void Attack(GameObject enemy)
     {
-        var finalDamage = Mathf.Clamp(damage - gameObject.GetComponent<EntityInv>().armor, 0, 100);
-        HP = Mathf.Clamp(HP - finalDamage, 0, maxHP);
-        if (HP <= 0) StartCoroutine(GetKilled());
-        return HP <= 0;
+        Debug.Log(gameObject.name + ": Attack " + enemy.name);
+        enemy.GetComponent<EntityInteraction>().SufferDamage(damage + gameObject.GetComponent<EntityInv>().weapon);
+        StartCoroutine(AttackCoroutine(enemy));
     }
-    public bool GetHealed(int heal)
+    IEnumerator AttackCoroutine(GameObject enemy)
     {
-        HP = Mathf.Clamp(HP + heal, 0, maxHP);
-        return HP > maxHP / 2;
-    }
-    public bool Attack(GameObject enemy)
-    {
-        StartCoroutine(AttackCoroutine());
-        return enemy.GetComponent<EntityInteraction>().SufferDamage(damage + gameObject.GetComponent<EntityInv>().weapon);
-    }
-    IEnumerator AttackCoroutine()
-    {
+        if (enemy.GetComponent<EntityInteraction>().isDead()) gameObject.GetComponent<EntityInv>().totalCoins += enemy.GetComponent<EntityInv>().totalCoins;
         isAttacking = true;
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
     }
-    public bool Heal(GameObject ally)
-    {
-        return ally.GetComponent<EntityInteraction>().GetHealed(damage + gameObject.GetComponent<EntityInv>().weapon);
-    }
-    IEnumerator HealCoroutine()
-    {
-        isHealing = true;
-        yield return new WaitForSeconds(1.0f);
-        isHealing = false;
-    }
     IEnumerator GetKilled()
     {
         GetComponent<Collider>().enabled = false;
+        GetComponent<EntityMovement>().enabled = false;
+        GetComponent<EntityInv>().enabled = false;
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
+    }
+    public void SufferDamage(int damage)
+    {
+        var finalDamage = Mathf.Clamp(damage - gameObject.GetComponent<EntityInv>().armor, 0, 100);
+        HP = Mathf.Clamp(HP - finalDamage, 0, maxHP);
+        if (HP <= 0) StartCoroutine(GetKilled());
+    }
+    public void Heal(GameObject ally)
+    {
+        StartCoroutine(HealCoroutine(ally));
+    }
+    IEnumerator HealCoroutine(GameObject ally)
+    {
+        isHealing = true;
+        ally.GetComponent<EntityInteraction>().GetHealed(damage + gameObject.GetComponent<EntityInv>().weapon);
+        yield return new WaitForSeconds(1.0f);
+        isHealing = false;
+    }
+    public void GetHealed(int heal)
+    {
+        HP = Mathf.Clamp(HP + heal, 0, maxHP);
+    }
+    public bool isDead()
+    {
+        return this.HP <= 0;
     }
 }

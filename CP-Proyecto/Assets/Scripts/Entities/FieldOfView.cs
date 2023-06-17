@@ -57,6 +57,7 @@ public class FieldOfView : MonoBehaviour
         while (true)
         {
             FindVisibleTargets();
+            FindAlliesHurt();
             yield return new WaitForSeconds(delay);
         }
     }
