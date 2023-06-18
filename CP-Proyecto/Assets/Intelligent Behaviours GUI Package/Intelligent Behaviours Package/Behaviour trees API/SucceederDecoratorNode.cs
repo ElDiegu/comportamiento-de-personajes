@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine;
 public class SucceederDecoratorNode : TreeNode {
 
     public SucceederDecoratorNode(string name, TreeNode child, BehaviourTreeEngine behaviourTree)
@@ -14,11 +14,13 @@ public class SucceederDecoratorNode : TreeNode {
 
     private void ToChild()
     {
+
         if(Child.ReturnValue != ReturnValues.Running)
             return;
 
         ReturnValue = ReturnValues.Running;
         Child.ReturnValue = ReturnValues.Running;
+        Debug.Log("ToChild"+Child.StateNode.Name + StateNode.Name);
         new Transition("to child", StateNode, new PushPerception(behaviourTree), Child.StateNode, behaviourTree)
             .FireTransition();
 
@@ -27,20 +29,23 @@ public class SucceederDecoratorNode : TreeNode {
 
     public override void Update()
     {
-        if (!firstExecution) { ToChild(); firstExecution = true; }; // First loop goes to child
+        Debug.Log(firstExecution);
+        if (!firstExecution) { ToChild(); firstExecution = true;}; // First loop goes to child
         if (Child.ReturnValue != ReturnValues.Running) {
             if(ReturnNodeValue() != ReturnValues.Running) {
                 ReturnToParent();
                 Child.Reset();
+                firstExecution = false; //ADDED 
             }
         }
+        
     }
 
     public override ReturnValues ReturnNodeValue()
     {
         Child.ReturnValue = ReturnValues.Succeed;
         ReturnValue = Child.ReturnValue;
-
+       
         return ReturnValue;
     }
 }

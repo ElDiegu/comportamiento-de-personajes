@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - Armor
   - Entity
+  - Power Up
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossCharacter : MonoBehaviour {
+public class BossBehaviour : MonoBehaviour {
 
     #region variables
 
@@ -29,20 +29,27 @@ public class BossCharacter : MonoBehaviour {
     private LeafNode Tiene5powerups;
     private LeafNode Aumentalavelocidad;
     private LeafNode Hayalguienenrangodeataque;
-    private SequenceNode Atacando;
-    private LeafNode Estádentrodelcampodevisión;
     private LeafNode Moversehaciaél;
-    private SequenceNode Comprobacióndelataque;
-    private LeafNode Endistanciaparaatacarlo;
     private LeafNode Atacarlo;
     private LeafNode Moverse;
+    private LeafNode Moverse1;
+    private LeafNode DestruirMoneda;
     private InverterDecoratorNode Inverter_Esperar;
+    private InverterDecoratorNode Inversor;
+
     private LoopUntilFailDecoratorNode LoopUntilFail_Inverter_Esperar;
     private SucceederDecoratorNode Succeeder_Aumentodevelocidad;
-    private SucceederDecoratorNode Succeeder_Comprobacióndelataque;
-    private LoopUntilFailDecoratorNode LoopUntilFail_Atacando;
-    
+
     //Place your variables here
+    [Header("Character Scripts")]
+    [SerializeField] BossMovement entityMovement;
+    [SerializeField] BossInv entityInv;
+    [SerializeField] BossInteraction entityInteraction;
+    [SerializeField] BossFieldOfView fow;
+    [SerializeField] float waitedTime;
+
+    GameObject powerUpLooked;
+    GameObject coinLooked;
 
     #endregion variables
 
@@ -50,8 +57,6 @@ public class BossCharacter : MonoBehaviour {
     private void Start()
     {
         NewBT_BT = new BehaviourTreeEngine(false);
-        
-
         CreateBehaviourTree();
     }
     
@@ -70,6 +75,7 @@ public class BossCharacter : MonoBehaviour {
         NewSequenceNode3 = NewBT_BT.CreateSequenceNode("New Sequence Node 3", false);
         Contadoraumenta = NewBT_BT.CreateLeafNode("Contador aumenta", ContadoraumentaAction, ContadoraumentaSuccessCheck);
         Hayalguienenrango = NewBT_BT.CreateLeafNode("¿Hay alguien en rango?", HayalguienenrangoAction, HayalguienenrangoSuccessCheck);
+        Moverse1 = NewBT_BT.CreateLeafNode("Moverse1", Moverse1Action, Moverse1SuccessCheck);
         Atacar2 = NewBT_BT.CreateLeafNode("Atacar 2", Atacar2Action, Atacar2SuccessCheck);
         Estáelpowerupenrangodevision = NewBT_BT.CreateLeafNode("¿Está el power up en rango de vision?", EstáelpowerupenrangodevisionAction, EstáelpowerupenrangodevisionSuccessCheck);
         Moversealpowerup = NewBT_BT.CreateLeafNode("Moverse al power up", MoversealpowerupAction, MoversealpowerupSuccessCheck);
@@ -77,20 +83,18 @@ public class BossCharacter : MonoBehaviour {
         Aumentodevelocidad = NewBT_BT.CreateSequenceNode("Aumento de velocidad", false);
         Tiene5powerups = NewBT_BT.CreateLeafNode("¿Tiene 5 power ups?", Tiene5powerupsAction, Tiene5powerupsSuccessCheck);
         Aumentalavelocidad = NewBT_BT.CreateLeafNode("Aumenta la velocidad", AumentalavelocidadAction, AumentalavelocidadSuccessCheck);
-        Hayalguienenrangodeataque = NewBT_BT.CreateLeafNode("¿Hay alguien en rango de ataque?", HayalguienenrangodeataqueAction, HayalguienenrangodeataqueSuccessCheck);
-        Atacando = NewBT_BT.CreateSequenceNode("Atacando", false);
-        Estádentrodelcampodevisión = NewBT_BT.CreateLeafNode("¿Está dentro del campo de visión?", EstádentrodelcampodevisiónAction, EstádentrodelcampodevisiónSuccessCheck);
+        Hayalguienenrangodeataque = NewBT_BT.CreateLeafNode("¿Hay alguien en rango de ataque?", HayalguienenrangodeataqueAction, HayalguienenrangodeataqueSuccessCheck);;
         Moversehaciaél = NewBT_BT.CreateLeafNode("Moverse hacia él", MoversehaciaélAction, MoversehaciaélSuccessCheck);
-        Comprobacióndelataque = NewBT_BT.CreateSequenceNode("Comprobación del ataque", false);
-        Endistanciaparaatacarlo = NewBT_BT.CreateLeafNode("¿En distancia para atacarlo?", EndistanciaparaatacarloAction, EndistanciaparaatacarloSuccessCheck);
         Atacarlo = NewBT_BT.CreateLeafNode("Atacarlo", AtacarloAction, AtacarloSuccessCheck);
         Moverse = NewBT_BT.CreateLeafNode("Moverse", MoverseAction, MoverseSuccessCheck);
         Inverter_Esperar = NewBT_BT.CreateInverterNode("Inverter_Esperar", Esperar);
         LoopUntilFail_Inverter_Esperar = NewBT_BT.CreateLoopUntilFailNode("LoopUntilFail_Inverter_Esperar", Inverter_Esperar);
         Succeeder_Aumentodevelocidad = NewBT_BT.CreateSucceederNode("Succeeder_Aumentodevelocidad", Aumentodevelocidad);
-        Succeeder_Comprobacióndelataque = NewBT_BT.CreateSucceederNode("Succeeder_Comprobacióndelataque", Comprobacióndelataque);
-        LoopUntilFail_Atacando = NewBT_BT.CreateLoopUntilFailNode("LoopUntilFail_Atacando", Atacando);
-        
+        DestruirMoneda = NewBT_BT.CreateLeafNode("Destruir moneda", DestruirMonedaAction, DestruirMonedaSuccessCheck);
+        Inversor = NewBT_BT.CreateInverterNode("Inversor", Contadoraumenta);
+
+        LoopDecoratorNode rootNode = NewBT_BT.CreateLoopNode("Root node", Root);
+
         // Child adding
         Root.AddChild(Campear);
         Root.AddChild(Powerup);
@@ -100,6 +104,7 @@ public class BossCharacter : MonoBehaviour {
         Campear.AddChild(Haymonedacerca);
         Campear.AddChild(Moverseamoneda);
         Campear.AddChild(LoopUntilFail_Inverter_Esperar);
+        Campear.AddChild(DestruirMoneda);
         
         Powerup.AddChild(Estáelpowerupenrangodevision);
         Powerup.AddChild(Moversealpowerup);
@@ -107,27 +112,23 @@ public class BossCharacter : MonoBehaviour {
         Powerup.AddChild(Succeeder_Aumentodevelocidad);
         
         Atacar.AddChild(Hayalguienenrangodeataque);
-        Atacar.AddChild(LoopUntilFail_Atacando);
-        
+        Atacar.AddChild(Moversehaciaél);
+        Atacar.AddChild(Atacarlo);
+
         Esperar.AddChild(Elcontadorhafinalizado);
         Esperar.AddChild(NewSequenceNode3);
-        Esperar.AddChild(Contadoraumenta);
+        Esperar.AddChild(Inversor);
         
         NewSequenceNode3.AddChild(Hayalguienenrango);
+        NewSequenceNode3.AddChild(Moverse1);
         NewSequenceNode3.AddChild(Atacar2);
         
         Aumentodevelocidad.AddChild(Tiene5powerups);
         Aumentodevelocidad.AddChild(Aumentalavelocidad);
         
-        Atacando.AddChild(Estádentrodelcampodevisión);
-        Atacando.AddChild(Moversehaciaél);
-        Atacando.AddChild(Succeeder_Comprobacióndelataque);
-        
-        Comprobacióndelataque.AddChild(Endistanciaparaatacarlo);
-        Comprobacióndelataque.AddChild(Atacarlo);
-        
+      
         // SetRoot
-        NewBT_BT.SetRootNode(Root);
+        NewBT_BT.SetRootNode(rootNode);
         
         // ExitPerceptions
         
@@ -139,195 +140,256 @@ public class BossCharacter : MonoBehaviour {
     private void Update()
     {
         NewBT_BT.Update();
+        Debug.Log(NewBT_BT.GetCurrentState().Name);
     }
 
     // Create your desired actions
     
-    private void HaymonedacercaAction()
-    {
-        
-    }
-    
+    private void HaymonedacercaAction(){ Debug.Log("Moneda"); }
     private ReturnValues HaymonedacercaSuccessCheck()
     {
-        //Write here the code for the success check for Haymonedacerca
-        return ReturnValues.Failed;
+        if (fow.coin != null)
+        {
+            coinLooked = fow.coin;
+            return ReturnValues.Succeed;
+        }else
+        { 
+            return ReturnValues.Failed;
+        }
     }
-    
-    private void MoverseamonedaAction()
-    {
-        
-    }
-    
+  
+    private void MoverseamonedaAction() { entityMovement.Follow(coinLooked); }
     private ReturnValues MoverseamonedaSuccessCheck()
     {
-        //Write here the code for the success check for Moverseamoneda
-        return ReturnValues.Failed;
+        if (EntityInv.inRange(gameObject, coinLooked)){
+            return ReturnValues.Succeed;
+        }
+        else {
+            return ReturnValues.Running;
+        }
     }
     
-    private void ElcontadorhafinalizadoAction()
-    {
-        
-    }
-    
+    private void ElcontadorhafinalizadoAction(){}
     private ReturnValues ElcontadorhafinalizadoSuccessCheck()
     {
-        //Write here the code for the success check for Elcontadorhafinalizado
-        return ReturnValues.Failed;
+        if (waitedTime >= 2.0f) {
+            // new Transition("Entry_transition", Elcontadorhafinalizado.StateNode, new PushPerception(NewBT_BT), Moverse.StateNode, NewBT_BT)
+            // .FireTransition();
+            return ReturnValues.Succeed;
+        }
+        else
+        {
+            return ReturnValues.Failed;   
+        }
     }
     
     private void ContadoraumentaAction()
     {
-        
+        waitedTime += 10.0f * Time.deltaTime;
+        Debug.Log(waitedTime);
     }
-    
     private ReturnValues ContadoraumentaSuccessCheck()
     {
-        //Write here the code for the success check for Contadoraumenta
         return ReturnValues.Failed;
     }
     
-    private void HayalguienenrangoAction()
+    private void DestruirMonedaAction(){ entityInv.PickObject(coinLooked); }
+    private ReturnValues DestruirMonedaSuccessCheck()
     {
-        
+        if (entityInv.isPickingObject)
+        {
+            return ReturnValues.Running;
+        }
+        else
+        {
+            coinLooked = null;
+            return ReturnValues.Succeed;
+        }
     }
-    
+    private void HayalguienenrangoAction(){}
     private ReturnValues HayalguienenrangoSuccessCheck()
     {
-        //Write here the code for the success check for Hayalguienenrango
-        return ReturnValues.Failed;
+        if (fow.enemy != null)
+        {
+            return ReturnValues.Succeed;
+        }
+        else
+        {
+            return ReturnValues.Failed;
+        }
     }
-    
-    private void Atacar2Action()
+    private void Moverse1Action() { entityMovement.Follow(fow.enemy); }
+    private ReturnValues Moverse1SuccessCheck()
     {
-        
+        if (fow.enemy != null) { 
+            if (EntityInv.inRange(gameObject, fow.enemy))
+            {
+                return ReturnValues.Succeed;
+            }
+            else
+            {
+                return ReturnValues.Running;
+            }
+        }
+        else
+        {
+            return ReturnValues.Failed;
+        }
     }
-    
+
+    private void Atacar2Action(){ entityInteraction.Attack(fow.enemy); }
     private ReturnValues Atacar2SuccessCheck()
     {
-        //Write here the code for the success check for Atacar2
-        return ReturnValues.Failed;
+        if (entityInteraction.isAttacking)
+        {
+            return ReturnValues.Running;
+        }
+        else
+        {
+            return ReturnValues.Succeed;
+        }
     }
     
-    private void EstáelpowerupenrangodevisionAction()
-    {
-        
-    }
-    
+    private void EstáelpowerupenrangodevisionAction(){ Debug.Log("Powerup"); }
     private ReturnValues EstáelpowerupenrangodevisionSuccessCheck()
     {
-        //Write here the code for the success check for Estáelpowerupenrangodevision
-        return ReturnValues.Failed;
+        if (fow.powerUp != null)
+        {
+            powerUpLooked = fow.powerUp;
+            return ReturnValues.Succeed;
+        }
+        else
+        {
+            return ReturnValues.Failed;
+        }
     }
     
-    private void MoversealpowerupAction()
-    {
-        
-    }
-    
+    private void MoversealpowerupAction(){ entityMovement.Follow(powerUpLooked); }
     private ReturnValues MoversealpowerupSuccessCheck()
     {
-        //Write here the code for the success check for Moversealpowerup
-        return ReturnValues.Failed;
+        if (EntityInv.inRange(gameObject, powerUpLooked)){
+            return ReturnValues.Succeed;
+        }
+        else
+        {
+            return ReturnValues.Running;
+        }
     }
     
-    private void CogerpowerupAction()
-    {
-        
-    }
+    private void CogerpowerupAction(){ entityInv.PickObject(powerUpLooked); }
     
     private ReturnValues CogerpowerupSuccessCheck()
     {
-        //Write here the code for the success check for Cogerpowerup
-        return ReturnValues.Failed;
+        if (entityInv.isPickingObject)
+        {
+            return ReturnValues.Running;
+        }
+        else
+        {
+            powerUpLooked = null;
+            return ReturnValues.Succeed;
+            
+        }
+
     }
     
-    private void Tiene5powerupsAction()
-    {
-        
-    }
+    private void Tiene5powerupsAction(){}
     
     private ReturnValues Tiene5powerupsSuccessCheck()
     {
         //Write here the code for the success check for Tiene5powerups
-        return ReturnValues.Failed;
+        if (entityInv._totalPowerUp >= 5)
+        {
+            return ReturnValues.Succeed;
+        }
+        else
+        {
+            return ReturnValues.Failed;
+        }
     }
     
-    private void AumentalavelocidadAction()
-    {
-        
-    }
+    private void AumentalavelocidadAction(){ entityInv.IncreaseVelocity(); }
     
     private ReturnValues AumentalavelocidadSuccessCheck()
     {
         //Write here the code for the success check for Aumentalavelocidad
-        return ReturnValues.Failed;
+        if (entityInv.isIncreasingVelocity)
+        {
+            return ReturnValues.Running;
+        }
+        else
+        {
+            return ReturnValues.Succeed;
+        }
     }
     
-    private void HayalguienenrangodeataqueAction()
-    {
-        
-    }
+    private void HayalguienenrangodeataqueAction(){}
     
     private ReturnValues HayalguienenrangodeataqueSuccessCheck()
     {
         //Write here the code for the success check for Hayalguienenrangodeataque
-        return ReturnValues.Failed;
+        if (fow.enemy != null) {
+            return ReturnValues.Succeed;
+        }
+        else
+        {
+            return ReturnValues.Failed;
+        }
+
     }
-    
-    private void EstádentrodelcampodevisiónAction()
-    {
-        
-    }
-    
-    private ReturnValues EstádentrodelcampodevisiónSuccessCheck()
-    {
-        //Write here the code for the success check for Estádentrodelcampodevisión
-        return ReturnValues.Failed;
-    }
-    
-    private void MoversehaciaélAction()
-    {
-        
-    }
-    
+   
+    private void MoversehaciaélAction(){ entityMovement.Follow(fow.enemy); }
     private ReturnValues MoversehaciaélSuccessCheck()
     {
         //Write here the code for the success check for Moversehaciaél
-        return ReturnValues.Failed;
+        if (fow.enemy != null)
+        {
+            if(EntityInv.inRange(gameObject, fow.enemy))
+            {
+                return ReturnValues.Succeed;
+            }
+            else
+            {
+                return ReturnValues.Running;
+            }
+        }
+        else
+        {
+            return ReturnValues.Failed;
+        }
     }
-    
-    private void EndistanciaparaatacarloAction()
-    {
-        
-    }
-    
-    private ReturnValues EndistanciaparaatacarloSuccessCheck()
-    {
-        //Write here the code for the success check for Endistanciaparaatacarlo
-        return ReturnValues.Failed;
-    }
-    
-    private void AtacarloAction()
-    {
-        
-    }
+    private void AtacarloAction(){ entityInteraction.Attack(fow.enemy); }
     
     private ReturnValues AtacarloSuccessCheck()
     {
         //Write here the code for the success check for Atacarlo
-        return ReturnValues.Failed;
+        if (entityInteraction.isAttacking)
+        {
+            return ReturnValues.Running;
+        }
+        else
+        {
+            return ReturnValues.Succeed;
+        }
     }
     
     private void MoverseAction()
     {
-        
+        entityMovement.MoveRandom();
     }
     
     private ReturnValues MoverseSuccessCheck()
     {
         //Write here the code for the success check for Moverse
-        return ReturnValues.Failed;
+        if (entityMovement.isMoving)
+        {
+            return ReturnValues.Running;
+        }
+        else
+        {
+            return ReturnValues.Succeed;
+        }
     }
+    
     
 }
