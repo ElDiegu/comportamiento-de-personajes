@@ -37,6 +37,8 @@ public class EntityInv : MonoBehaviour
     IEnumerator PickObjectCorroutine(GameObject obj, float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        Debug.Log(gameObject.name + " Picked " + obj.name);
+
         if (obj.tag == "Coin") totalCoins++;
         if (obj.tag == "Armor") armor += obj.GetComponent<Armor>().armor;
         if (obj.tag == "Weapon") weapon += obj.GetComponent<Weapon>().damage;

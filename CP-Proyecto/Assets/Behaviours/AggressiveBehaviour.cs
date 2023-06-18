@@ -156,15 +156,15 @@ public class PersonajeAgresivo : MonoBehaviour {
     {
         // Perceptions
         // Modify or add new Perceptions, see the guide for more
-        EstaEnArmaduraPerception = CogerArmadura_SubFSM.CreatePerception<ValuePerception>(() => EntityInv.inRange(gameObject, fow.weapon));
-        NoEstaCogiendoArmaPerception = CogerArmadura_SubFSM.CreatePerception<ValuePerception>(() => !entityInv.isPickingObject);
+        EstaEnArmaduraPerception = CogerArmadura_SubFSM.CreatePerception<ValuePerception>(() => EntityInv.inRange(gameObject, fow.armor));
+        NoEstaCogiendoArmaduraPerception = CogerArmadura_SubFSM.CreatePerception<ValuePerception>(() => !entityInv.isPickingObject);
 
         EnArmadura = CogerArmadura_SubFSM.CreateEntryState("En Armadura");
         CogiendoArmadura = CogerArmadura_SubFSM.CreateState("Cogiendo Armadura");
 
 
         CogerArmadura_SubFSM.CreateTransition("EnArmadura a CogiendoArmadura", EnArmadura, EstaEnArmaduraPerception, CogiendoArmadura, PickArmor);
-        CogerArmadura_SubFSM.CreateTransition("CogiendoArmadura a EnArmadura", CogiendoArmadura, NoEstaCogiendoArmaPerception, EnArmadura);
+        CogerArmadura_SubFSM.CreateTransition("CogiendoArmadura a EnArmadura", CogiendoArmadura, NoEstaCogiendoArmaduraPerception, EnArmadura, MoveToArmor);
 
         // ExitPerceptions
 

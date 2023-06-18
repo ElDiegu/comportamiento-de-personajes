@@ -98,7 +98,7 @@ public class EntityMovement : MonoBehaviour
     public void Flee(GameObject obj)
     {
         Debug.Log(gameObject.name + ": Flee from " + obj.name);
-        StopAllCoroutines();
+        gameObject.GetComponent<EntityInv>().StopAllCoroutines();
         isFleeing = true;
         isMoving = false;
         isFollowing = false;

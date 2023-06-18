@@ -261,7 +261,7 @@ public class HelperBehaviour : MonoBehaviour {
         if (HelperBehaviour_FSM.actualState.Name == "Inactivo") Inactivo_SubFSM.Update();
         if (HelperBehaviour_FSM.actualState.Name == "Apoyar aliado") Apoyaraliado_SubFSM.Update();
         if (HelperBehaviour_FSM.actualState.Name == "Coger moneda") Cogermoneda_SubFSM.Update();
-        if (HelperBehaviour_FSM.actualState.Name == "Coger armdura") Cogerarmadura_SubFSM.Update();
+        if (HelperBehaviour_FSM.actualState.Name == "Coger armadura") Cogerarmadura_SubFSM.Update();
         if (HelperBehaviour_FSM.actualState.Name == "Huir") Huir_SubFSM.Update();
     }
 
