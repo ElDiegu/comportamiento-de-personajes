@@ -11,7 +11,7 @@ public class EntityInv : MonoBehaviour
     public bool isPickingObject;
 
     [Header("Inventory")]
-    [SerializeField] int _totalCoins;
+    public int totalCoins;
     public int weapon;
     public int armor;
 
@@ -26,8 +26,7 @@ public class EntityInv : MonoBehaviour
     }
     public static bool inRange(GameObject self, GameObject obj)
     {
-
-        return Vector3.Distance(self.transform.position, obj.transform.position) <= 1.0f;
+        return Vector3.Distance(self.transform.position, obj.transform.position) <= 0.5f;
     }
     public void PickObject(GameObject obj)
     {
@@ -38,7 +37,9 @@ public class EntityInv : MonoBehaviour
     IEnumerator PickObjectCorroutine(GameObject obj, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        if (obj.tag == "Coin") _totalCoins++;
+        Debug.Log(gameObject.name + " Picked " + obj.name);
+
+        if (obj.tag == "Coin") totalCoins++;
         if (obj.tag == "Armor") armor += obj.GetComponent<Armor>().armor;
         if (obj.tag == "Weapon") weapon += obj.GetComponent<Weapon>().damage;
 
