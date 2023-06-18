@@ -39,13 +39,11 @@ public class EntityInv : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         Debug.Log(gameObject.name + " Picked " + obj.name);
 
-        if (obj.tag == "Coin") totalCoins++;
-        if (obj.tag == "Armor") armor += obj.GetComponent<Armor>().armor;
-        if (obj.tag == "Weapon") weapon += obj.GetComponent<Weapon>().damage;
+        if (obj.tag == "Coin") { totalCoins++; fow.coin = null; coinDetected = false; }
+        if (obj.tag == "Armor") { armor += obj.GetComponent<Armor>().armor; fow.armor = null; armorDetected = false; }
+        if (obj.tag == "Weapon") { weapon += obj.GetComponent<Weapon>().damage; fow.weapon = null; weaponDetected = false; }
 
-        obj.gameObject.transform.position += new Vector3(0, 10000, 0);
         Destroy(obj);
-        fow.FindVisibleTargets();
         isPickingObject = false;
     }
 }

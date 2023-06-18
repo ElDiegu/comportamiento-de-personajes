@@ -28,8 +28,6 @@ public class EntityInteraction : MonoBehaviour
         enemyDetected = fow.enemy != null;
         allyHurtDetected = fow.allyHurt != null;
     }
-    
-
     public void Attack(GameObject enemy)
     {
         Debug.Log(gameObject.name + ": Attack " + enemy.name);

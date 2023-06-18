@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class FieldOfView : MonoBehaviour
     public GameObject enemy;
     public GameObject allyHurt;
 
+    private void Awake()
+    {
+        //foreach (EntityInteraction entity in FindObjectsOfType<EntityInteraction>().Where((x) => x.team == GetComponent<EntityInteraction>().team)) allies.Add(entity.gameObject);
+    }
     private void Start()
     {
         StartCoroutine(FindTargetsWithDelay(0.2f));
@@ -57,7 +62,7 @@ public class FieldOfView : MonoBehaviour
         while (true)
         {
             FindVisibleTargets();
-            FindAlliesHurt();
+            //FindAlliesHurt();
             yield return new WaitForSeconds(delay);
         }
     }
@@ -72,9 +77,9 @@ public class FieldOfView : MonoBehaviour
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) continue;
 
-                if (collider.gameObject.tag == "Coin" && coin == null) coin = collider.gameObject;
-                if (collider.gameObject.tag == "Weapon" && weapon == null) weapon = collider.gameObject;
-                if (collider.gameObject.tag == "Armor" && armor == null) armor = collider.gameObject;
+                if (collider.transform.parent.gameObject.tag == "Coin" && coin == null) coin = collider.transform.parent.gameObject;
+                if (collider.transform.parent.gameObject.tag == "Weapon" && weapon == null) weapon = collider.transform.parent.gameObject;
+                if (collider.transform.parent.gameObject.tag == "Armor" && armor == null) armor = collider.transform.parent.gameObject;
                 if (collider.gameObject.tag == "Entity" && enemy == null &&
                     collider.gameObject.GetComponent<EntityInteraction>().team != entityInteraction.team) enemy = collider.gameObject;
             }
@@ -84,9 +89,9 @@ public class FieldOfView : MonoBehaviour
     {
         foreach (Collider collider in colliders)
         {
-            if (collider.gameObject.tag == "Coin" && coin == null) coin = collider.gameObject;
-            if (collider.gameObject.tag == "Weapon" && weapon == null) weapon = collider.gameObject;
-            if (collider.gameObject.tag == "Armor" && armor == null) armor = collider.gameObject;
+            if (collider.transform.parent.gameObject.tag == "Coin" && coin == null) coin = collider.transform.parent.gameObject;
+            if (collider.transform.parent.gameObject.tag == "Weapon" && weapon == null) weapon = collider.transform.parent.gameObject;
+            if (collider.transform.parent.gameObject.tag == "Armor" && armor == null) armor = collider.transform.parent.gameObject;
             if (collider.gameObject.tag == "Entity" && enemy == null &&
                 collider.gameObject.GetComponent<EntityInteraction>().team != entityInteraction.team) enemy = collider.gameObject;
         }

@@ -30,6 +30,9 @@ public class EntityMovement : MonoBehaviour
         if (transform.position != destination && !isResting && !isFleeing) isMoving = true;
         else if (OnLocation(destination)) isMoving = false;
 
+        if (followingObject == null) isFollowing = false;
+        if (fleeingEnemy == null) isFleeing = false;
+
         if (isFollowing)
         {
             transform.rotation = Quaternion.LookRotation(Direction2D(followingObject, gameObject), transform.up);
