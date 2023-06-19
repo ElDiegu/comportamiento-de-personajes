@@ -10,6 +10,7 @@ public class PlayerInputController : MonoBehaviour
     [Header("Controls Parameters")]
     [SerializeField] LayerMask targetLayer;
     [SerializeField] GameObject prefab;
+    [SerializeField] GameObject objectOrganizer;
 
     private void Update()
     {
@@ -21,8 +22,8 @@ public class PlayerInputController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (!Physics.Raycast(ray, out hit)) return;
-        if (hit.collider.gameObject.layer != targetLayer) return;
-        Instantiate(prefab, NavMeshUtils.GetRandomPoint(hit.point, 0.1f), new Quaternion());
+        if (hit.collider.gameObject.tag != "Floor") return;
+        Instantiate(prefab, NavMeshUtils.GetRandomPoint(hit.point, 0.1f), new Quaternion(), objectOrganizer.transform);
     }
     public void SetPrefab(GameObject newPrefab)
     {

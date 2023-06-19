@@ -21,7 +21,7 @@ public class EntityInteraction : MonoBehaviour
     [SerializeField] FieldOfView fov;
 
     // Events used in display control of actions carried by the Character
-    public event Action onAttacking, onHealing;
+    public event Action onAttacking, onHealing, onDying;
 
     private void Awake()
     {
@@ -34,7 +34,9 @@ public class EntityInteraction : MonoBehaviour
     }
     public void Attack(GameObject enemy)
     {
+        if (enemy == null) return;
         Debug.Log(gameObject.name + ": Attack " + enemy.name);
+        transform.rotation = Quaternion.LookRotation(EntityMovement.Direction2D(enemy, gameObject), transform.up);
         enemy.GetComponent<EntityInteraction>().SufferDamage(damage + gameObject.GetComponent<EntityInv>().weapon);
         if (onAttacking != null) onAttacking();
         StartCoroutine(AttackCoroutine(enemy));
@@ -43,14 +45,17 @@ public class EntityInteraction : MonoBehaviour
     {
         if (enemy.GetComponent<EntityInteraction>().isDead()) gameObject.GetComponent<EntityInv>().totalCoins += enemy.GetComponent<EntityInv>().totalCoins;
         isAttacking = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.21f);
         isAttacking = false;
     }
     IEnumerator GetKilled()
     {
+        Debug.Log(gameObject + " is dead");
         GetComponent<Collider>().enabled = false;
         GetComponent<EntityMovement>().enabled = false;
         GetComponent<EntityInv>().enabled = false;
+        GetComponentInChildren<Animator>().enabled = false;
+        if (onDying != null) onDying();
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1935873625798597543}
   - component: {fileID: 4344378018406275293}
   - component: {fileID: 5013102566082977540}
-  m_Layer: 0
+  - component: {fileID: 8833868099638205407}
+  m_Layer: 6
   m_Name: Bush1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &8833868099638205407
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497320574278986753}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.013, y: 0.013, z: 0.013}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.001, y: 0.012, z: -0.001}
+  m_TimeToStationary: 0.5

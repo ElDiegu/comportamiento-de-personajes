@@ -741,7 +741,7 @@ MonoBehaviour:
   maxHP: 20
   HP: 0
   damage: 2
-  team: 0
+  team: 2
   fov: {fileID: 5011123479087871222}
 --- !u!114 &5011123479087871222
 MonoBehaviour:
@@ -756,8 +756,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 10
-  awarenessRadius: 1
-  viewAngle: 50
+  awarenessRadius: 2
+  viewAngle: 70
   allies: []
   targetMask:
     serializedVersion: 2
@@ -964,6 +964,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6686514599447478318, guid: eb0059972769b9047b2b5b89240cf34b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 216f2b17bfecb954bb5924fe0b193a31, type: 2}
     - target: {fileID: 919132149155446097, guid: eb0059972769b9047b2b5b89240cf34b, type: 3}
       propertyPath: m_Name
       value: Finbert

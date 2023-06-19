@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8621001074708635482}
   - component: {fileID: 3490482386451005336}
   - component: {fileID: 7998570766927757971}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rock1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8977804182152384085
 MeshFilter:
@@ -119,7 +119,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.014, y: 0.009000001, z: 0.014}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.001, y: 0.001, z: 0}
   m_TimeToStationary: 0.5
