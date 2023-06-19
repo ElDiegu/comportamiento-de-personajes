@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,10 @@ public class EntityInteraction : MonoBehaviour
     public int team;
 
     [Header("Character View")]
-    [SerializeField] FieldOfView fow;
+    [SerializeField] FieldOfView fov;
+
+    // Events used in display control of actions carried by the Character
+    public event Action onAttacking, onHealing;
 
     private void Awake()
     {
@@ -25,13 +29,14 @@ public class EntityInteraction : MonoBehaviour
     }
     private void Update()
     {
-        enemyDetected = fow.enemy != null;
-        allyHurtDetected = fow.allyHurt != null;
+        enemyDetected = fov.enemy != null;
+        allyHurtDetected = fov.allyHurt != null;
     }
     public void Attack(GameObject enemy)
     {
         Debug.Log(gameObject.name + ": Attack " + enemy.name);
         enemy.GetComponent<EntityInteraction>().SufferDamage(damage + gameObject.GetComponent<EntityInv>().weapon);
+        if (onAttacking != null) onAttacking();
         StartCoroutine(AttackCoroutine(enemy));
     }
     IEnumerator AttackCoroutine(GameObject enemy)
@@ -57,6 +62,8 @@ public class EntityInteraction : MonoBehaviour
     }
     public void Heal(GameObject ally)
     {
+        Debug.Log(gameObject.name + ": Healing " + ally.name);
+        if(onHealing != null) onHealing();
         StartCoroutine(HealCoroutine(ally));
     }
     IEnumerator HealCoroutine(GameObject ally)

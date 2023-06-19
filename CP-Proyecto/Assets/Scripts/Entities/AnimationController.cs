@@ -23,7 +23,7 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Character.SetBool(isMoving, entityMovement.isMoving);
+        Character.SetBool(isMoving, (entityMovement.isMoving || entityMovement.isFollowing || entityMovement.isFleeing) && !entityMovement.isResting);
         Character.SetBool(isPickingObject, entityInv.isPickingObject);
         Character.SetBool(isAttacking, entityInteraction.isAttacking);
     }

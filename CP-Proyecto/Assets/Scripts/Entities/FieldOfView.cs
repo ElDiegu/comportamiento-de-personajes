@@ -10,7 +10,7 @@ public class FieldOfView : MonoBehaviour
     public float awarenessRadius;
     [Range(0, 360)]
     public float viewAngle;
-    [SerializeField] List<GameObject> allies;
+    public List<GameObject> allies;
 
     [Header("Masks")]
     [SerializeField] LayerMask targetMask;
@@ -28,21 +28,24 @@ public class FieldOfView : MonoBehaviour
 
     private void Awake()
     {
-        //foreach (EntityInteraction entity in FindObjectsOfType<EntityInteraction>().Where((x) => x.team == GetComponent<EntityInteraction>().team)) allies.Add(entity.gameObject);
+        FindAllies();
     }
     private void Start()
     {
         StartCoroutine(FindTargetsWithDelay(0.2f));
     }
-
     public void FindAlliesHurt() 
     {
+        allyHurt = null;
         foreach (GameObject ally in allies)
+        {
+            if (ally == null) continue;
             if (ally.GetComponent<EntityInteraction>().HP <= ally.GetComponent<EntityInteraction>().maxHP / 2)
             {
                 allyHurt = ally;
                 break;
             }
+        }
     }
     public void FindVisibleTargets()
     {
@@ -57,12 +60,17 @@ public class FieldOfView : MonoBehaviour
         Collider[] targetsInAwarenessRadius = Physics.OverlapSphere(transform.position, awarenessRadius, targetMask);
         FilterAwarenessColliders(targetsInAwarenessRadius);
     }
+    public void FindAllies()
+    {
+        allies.Clear();
+        foreach (EntityInteraction entity in FindObjectsOfType<EntityInteraction>().Where((x) => x.team == GetComponent<EntityInteraction>().team)) allies.Add(entity.gameObject);
+    }
     IEnumerator FindTargetsWithDelay(float delay)
     {
         while (true)
         {
             FindVisibleTargets();
-            //FindAlliesHurt();
+            FindAlliesHurt();
             yield return new WaitForSeconds(delay);
         }
     }

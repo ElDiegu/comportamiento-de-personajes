@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PersonajeAgresivo : MonoBehaviour {
+public class AggressiveBehaviour : MonoBehaviour {
 
     #region variables
 
@@ -15,22 +15,12 @@ public class PersonajeAgresivo : MonoBehaviour {
     private StateMachineEngine CogerArmadura_SubFSM;
 
     private ValuePerception EstadoInicialPerception;
-    private ValuePerception EstaCogiendoPerception;
     private ValuePerception EstaEnEnemigoPerception;
     private ValuePerception EstaEnMonedaPerception;
-    private ValuePerception NoEstaEnMonedaPerception;
     private ValuePerception EstaEnArmaPerception;
-    private ValuePerception NoEstaEnArmaPerception;
     private ValuePerception EstaEnArmaduraPerception;
-    private ValuePerception NoEstaEnArmaduraPerception;
 
-
-    private ValuePerception MonedaCercaPerception;
-    private ValuePerception ArmaduraCercaPerception;
-    private ValuePerception ArmaCercaPerception;
-    private ValuePerception EnemigoCercaPerception;
     private ValuePerception NoEstaMoviendosePerception;
-    private ValuePerception EstaCaminandoPerception;
     private ValuePerception NoHayEnemigoCercaPerception;
     private ValuePerception HayArmaCercaPerception;
     private ValuePerception NoHayMonedaCercaPerception;
@@ -46,7 +36,7 @@ public class PersonajeAgresivo : MonoBehaviour {
     private ValuePerception NoEstaParadoPerception;
     private ValuePerception NoHayArmaCercaPerception;
     private ValuePerception HayArmaduraCercaPerception;
-    private ValuePerception EstaAtacandoPerception;
+
     private State Inactivo;
     private State Combatir;
     private State CogerMoneda;
@@ -57,7 +47,7 @@ public class PersonajeAgresivo : MonoBehaviour {
     private State EnMoneda;
     private State CogiendoMoneda;
     private State EnArma;
-    private State cogiendoArma;
+    private State CogiendoArma;
     private State EnArmadura;
     private State CogiendoArmadura;
 
@@ -90,9 +80,9 @@ public class PersonajeAgresivo : MonoBehaviour {
         CreateCombatir_SubFSM();
         CreateInactivo_SubFSM();
         CreateMoneda_SubFSM();
-        CreateStateMachine();
         CreateArma_SubFSM();
         CreateArmadura_SubFSM();
+        CreateStateMachine();
     }
 
     private void CreateInactivo_SubFSM()
@@ -139,12 +129,12 @@ public class PersonajeAgresivo : MonoBehaviour {
         EstaEnArmaPerception = CogerArma_SubFSM.CreatePerception<ValuePerception>(() => EntityInv.inRange(gameObject, fow.weapon));
         NoEstaCogiendoArmaPerception = CogerArma_SubFSM.CreatePerception<ValuePerception>(() => !entityInv.isPickingObject);
 
-        EnArma = CogerArma_SubFSM.CreateEntryState("En Arma");
-        cogiendoArma = CogerArma_SubFSM.CreateState("Cogiendo Arma");
+        EnArma = CogerArma_SubFSM.CreateEntryState("En arma");
+        CogiendoArma = CogerArma_SubFSM.CreateState("Cogiendo arma");
 
 
-        CogerArma_SubFSM.CreateTransition("EnArma a CogiendoArma", EnArma, EstaEnArmaPerception, cogiendoArma, PickWeapon);
-        CogerArma_SubFSM.CreateTransition("CogiendoArma a EnArma", cogiendoArma, NoEstaCogiendoArmaPerception, EnArma);
+        CogerArma_SubFSM.CreateTransition("EnArma a CogiendoArma", EnArma, EstaEnArmaPerception, CogiendoArma, PickWeapon);
+        CogerArma_SubFSM.CreateTransition("CogiendoArma a EnArma", CogiendoArma, NoEstaCogiendoArmaPerception, EnArma);
 
 
         // ExitPerceptions
@@ -159,12 +149,12 @@ public class PersonajeAgresivo : MonoBehaviour {
         EstaEnArmaduraPerception = CogerArmadura_SubFSM.CreatePerception<ValuePerception>(() => EntityInv.inRange(gameObject, fow.armor));
         NoEstaCogiendoArmaduraPerception = CogerArmadura_SubFSM.CreatePerception<ValuePerception>(() => !entityInv.isPickingObject);
 
-        EnArmadura = CogerArmadura_SubFSM.CreateEntryState("En Armadura");
-        CogiendoArmadura = CogerArmadura_SubFSM.CreateState("Cogiendo Armadura");
+        EnArmadura = CogerArmadura_SubFSM.CreateEntryState("En armadura");
+        CogiendoArmadura = CogerArmadura_SubFSM.CreateState("Cogiendo armadura");
 
 
         CogerArmadura_SubFSM.CreateTransition("EnArmadura a CogiendoArmadura", EnArmadura, EstaEnArmaduraPerception, CogiendoArmadura, PickArmor);
-        CogerArmadura_SubFSM.CreateTransition("CogiendoArmadura a EnArmadura", CogiendoArmadura, NoEstaCogiendoArmaduraPerception, EnArmadura, MoveToArmor);
+        CogerArmadura_SubFSM.CreateTransition("CogiendoArmadura a EnArmadura", CogiendoArmadura, NoEstaCogiendoArmaduraPerception, EnArmadura);
 
         // ExitPerceptions
 
@@ -215,9 +205,9 @@ public class PersonajeAgresivo : MonoBehaviour {
         InactivoEmpty = PersonajeAgresivo_FSM.CreateEntryState("Inactivo Empty", InactivoEmptyAction);
         Inactivo = PersonajeAgresivo_FSM.CreateSubStateMachine("Inactivo", Inactivo_SubFSM);
         Combatir = PersonajeAgresivo_FSM.CreateSubStateMachine("Combatir", Combatir_SubFSM);
-        CogerMoneda = PersonajeAgresivo_FSM.CreateSubStateMachine("CogerMoneda", CogerMoneda_SubFSM);
-        CogerArmadura = PersonajeAgresivo_FSM.CreateSubStateMachine("CogerArmadura", CogerArmadura_SubFSM);
-        CogerArma = PersonajeAgresivo_FSM.CreateSubStateMachine("CogerArma", CogerArma_SubFSM);
+        CogerMoneda = PersonajeAgresivo_FSM.CreateSubStateMachine("Coger Moneda", CogerMoneda_SubFSM);
+        CogerArmadura = PersonajeAgresivo_FSM.CreateSubStateMachine("Coger Armadura", CogerArmadura_SubFSM);
+        CogerArma = PersonajeAgresivo_FSM.CreateSubStateMachine("Coger Arma", CogerArma_SubFSM);
 
         // Transitions
 
@@ -243,9 +233,9 @@ public class PersonajeAgresivo : MonoBehaviour {
     {
         PersonajeAgresivo_FSM.Update();
         if (PersonajeAgresivo_FSM.actualState.Name == "Inactivo") Inactivo_SubFSM.Update();
-        if (PersonajeAgresivo_FSM.actualState.Name == "CogerMoneda") CogerMoneda_SubFSM.Update();
-        if (PersonajeAgresivo_FSM.actualState.Name == "CogerArma") CogerArma_SubFSM.Update();
-        if (PersonajeAgresivo_FSM.actualState.Name == "CogerArmadura") CogerArmadura_SubFSM.Update();
+        if (PersonajeAgresivo_FSM.actualState.Name == "Coger Moneda") CogerMoneda_SubFSM.Update();
+        if (PersonajeAgresivo_FSM.actualState.Name == "Coger Arma") { CogerArma_SubFSM.Update(); }
+        if (PersonajeAgresivo_FSM.actualState.Name == "Coger Armadura") CogerArmadura_SubFSM.Update();
         if (PersonajeAgresivo_FSM.actualState.Name == "Combatir") Combatir_SubFSM.Update();
     }
 

@@ -143,8 +143,8 @@ public class CowardBehaviour : MonoBehaviour {
         CogiendoArmadura = CogerArmadura_SubFSM.CreateState("Cogiendo Armadura");
         
         // Transitions
-        CogerArmadura_SubFSM.CreateTransition("NoEstaCogiendoArmadura", EnArmadura, NoEstaCogiendoArmaduraPerception, CogiendoArmadura, PickArmor);
-        CogerArmadura_SubFSM.CreateTransition("EstaEnArmadura", CogiendoArmadura, EstaEnArmaduraPerception, EnArmadura);
+        CogerArmadura_SubFSM.CreateTransition("NoEstaCogiendoArmadura", EnArmadura, EstaEnArmaduraPerception, CogiendoArmadura, PickArmor);
+        CogerArmadura_SubFSM.CreateTransition("EstaEnArmadura", CogiendoArmadura, NoEstaCogiendoArmaduraPerception, EnArmadura);
         
         // ExitPerceptions
         

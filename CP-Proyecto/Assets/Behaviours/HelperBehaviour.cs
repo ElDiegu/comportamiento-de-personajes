@@ -128,8 +128,8 @@ public class HelperBehaviour : MonoBehaviour {
         // Modify or add new Perceptions, see the guide for more
         EstaEnAliadoPerception = Apoyaraliado_SubFSM.CreatePerception<ValuePerception>(() => EntityInv.inRange(gameObject, fow.allyHurt));
         NoEstaCurandoPerception = Apoyaraliado_SubFSM.CreatePerception<ValuePerception>(() => !entityInteraction.isHealing);
-        NoEstaParadoEstaEnObjetoPerception = Apoyaraliado_SubFSM.CreatePerception<ValuePerception>(() => !entityMovement.isMoving && EntityInv.inRange(gameObject, fow.allyHurt));
-        NoEstaParadoNoEstaEnObjetoPerception = Apoyaraliado_SubFSM.CreatePerception<ValuePerception>(() => !entityMovement.isMoving && !EntityInv.inRange(gameObject, fow.allyHurt));
+        NoEstaParadoEstaEnObjetoPerception = Apoyaraliado_SubFSM.CreatePerception<ValuePerception>(() => !entityMovement.isResting && EntityInv.inRange(gameObject, fow.allyHurt));
+        NoEstaParadoNoEstaEnObjetoPerception = Apoyaraliado_SubFSM.CreatePerception<ValuePerception>(() => !entityMovement.isResting && !EntityInv.inRange(gameObject, fow.allyHurt));
         // States
         Moverse2 = Apoyaraliado_SubFSM.CreateEntryState("Moverse 2");
         Curar = Apoyaraliado_SubFSM.CreateState("Curar");
