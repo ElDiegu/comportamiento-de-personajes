@@ -10,6 +10,7 @@ public class World : MonoBehaviour
     [SerializeField] float maxGenerationTime;
     [SerializeField] float distanceBetweenObjects;
     public float maxDistance;
+    [SerializeField] bool genObjects;
 
     [Header("Objects")]
     [SerializeField] GameObject coin;
@@ -19,21 +20,18 @@ public class World : MonoBehaviour
     [SerializeField] LayerMask objectLayer;
     private void Start()
     {
-        //StartCoroutine(CoinGenerator());
-        //StartCoroutine(ArmorGenerator());
-        //StartCoroutine(WeaponGenerator());
+        StartCoroutine(CoinGenerator());
+        StartCoroutine(ArmorGenerator());
+        StartCoroutine(WeaponGenerator());
     }
     IEnumerator CoinGenerator()
     {
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(minGenerationTime, maxGenerationTime + 1));
-            Vector3 point = new Vector3(0, 0, 0);
-            while (true)
-            {
-                point = NavMeshUtils.GetRandomPoint(transform.position, maxDistance);
-                if (Physics.OverlapSphere(transform.position, distanceBetweenObjects, objectLayer).Length <= 0) break;
-            }
+            if (!genObjects) continue;
+            Vector3 point = NavMeshUtils.GetRandomPoint(transform.position, maxDistance);
+            if (Physics.OverlapSphere(transform.position, distanceBetweenObjects, objectLayer).Length > 0) continue;
             Instantiate(coin, point, transform.rotation, objectOrganizer.transform);
             Debug.Log("Generating coin in position: " + point);
         }
@@ -44,12 +42,9 @@ public class World : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(minGenerationTime, maxGenerationTime + 1));
-            Vector3 point = new Vector3(0, 0, 0);
-            while (true)
-            {
-                point = NavMeshUtils.GetRandomPoint(transform.position, maxDistance);
-                if (Physics.OverlapSphere(transform.position, distanceBetweenObjects, objectLayer).Length <= 0) break;
-            }
+            if (!genObjects) continue;
+            Vector3 point = NavMeshUtils.GetRandomPoint(transform.position, maxDistance);
+            if (Physics.OverlapSphere(transform.position, distanceBetweenObjects, objectLayer).Length > 0) continue;
             Instantiate(armor, point, transform.rotation, objectOrganizer.transform);
             Debug.Log("Generating armor in position: " + point);
         }
@@ -60,14 +55,16 @@ public class World : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(minGenerationTime, maxGenerationTime + 1));
-            Vector3 point = new Vector3(0, 0, 0);
-            while (true)
-            {
-                point = NavMeshUtils.GetRandomPoint(transform.position, maxDistance);
-                if (Physics.OverlapSphere(transform.position, distanceBetweenObjects, objectLayer).Length <= 0) break;
-            }
+            if (!genObjects) continue;
+            Vector3 point = NavMeshUtils.GetRandomPoint(transform.position, maxDistance);
+            if (Physics.OverlapSphere(transform.position, distanceBetweenObjects, objectLayer).Length > 0) continue;
             Instantiate(weapon, point, transform.rotation, objectOrganizer.transform);
             Debug.Log("Generating weapon in position: " + point);
         }
+    }
+
+    public void SwapGeneration()
+    {
+        genObjects = !genObjects;
     }
 }
