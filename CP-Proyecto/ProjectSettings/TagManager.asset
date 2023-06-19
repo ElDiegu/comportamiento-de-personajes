@@ -9,6 +9,7 @@ TagManager:
   - Armor
   - Entity
   - Floor
+  - Power Up
   layers:
   - Default
   - TransparentFX

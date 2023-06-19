@@ -1,0 +1,785 @@
+<?xml version="1.0"?>
+<XMLElement xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>3f279a81-8efa-4b4c-ba19-c80cf2d4dc14</Id>
+  <elemType>BehaviourTree</elemType>
+  <secondType />
+  <thirdType />
+  <fourthType />
+  <name>New BT</name>
+  <windowPosX>153</windowPosX>
+  <windowPosY>66</windowPosY>
+  <nodes>
+    <XMLElement>
+      <Id>27a16fb5-8407-4a72-8508-4a96b03e543b</Id>
+      <elemType>BehaviourNode</elemType>
+      <secondType>Selector</secondType>
+      <thirdType />
+      <fourthType />
+      <name>Root</name>
+      <windowPosX>784</windowPosX>
+      <windowPosY>140</windowPosY>
+      <nodes>
+        <XMLElement>
+          <Id>d6689947-ca2e-428a-a8f4-168249239152</Id>
+          <elemType>BehaviourNode</elemType>
+          <secondType>Sequence</secondType>
+          <thirdType />
+          <fourthType />
+          <name>Campear</name>
+          <windowPosX>318</windowPosX>
+          <windowPosY>251</windowPosY>
+          <nodes>
+            <XMLElement>
+              <Id>277d1572-98e3-46c1-8cff-15dbecb85b01</Id>
+              <elemType>BehaviourNode</elemType>
+              <secondType>Leaf</secondType>
+              <thirdType />
+              <fourthType />
+              <name>¿Hay moneda cerca?</name>
+              <windowPosX>159</windowPosX>
+              <windowPosY>477</windowPosY>
+              <nodes />
+              <isRandom>false</isRandom>
+              <isInfinite>false</isInfinite>
+              <delayTime>0</delayTime>
+              <Nloops>0</Nloops>
+              <index>1</index>
+              <variableMin>0</variableMin>
+              <variableMax>0</variableMax>
+              <slope>0</slope>
+              <exp>0</exp>
+              <displX>0</displX>
+              <displY>0</displY>
+              <weight>0</weight>
+              <isExit>false</isExit>
+            </XMLElement>
+            <XMLElement>
+              <Id>6cf221f7-52db-4cb7-9037-b822a0313521</Id>
+              <elemType>BehaviourNode</elemType>
+              <secondType>Leaf</secondType>
+              <thirdType />
+              <fourthType />
+              <name>Moverse a moneda</name>
+              <windowPosX>398</windowPosX>
+              <windowPosY>474</windowPosY>
+              <nodes />
+              <isRandom>false</isRandom>
+              <isInfinite>false</isInfinite>
+              <delayTime>0</delayTime>
+              <Nloops>0</Nloops>
+              <index>2</index>
+              <variableMin>0</variableMin>
+              <variableMax>0</variableMax>
+              <slope>0</slope>
+              <exp>0</exp>
+              <displX>0</displX>
+              <displY>0</displY>
+              <weight>0</weight>
+              <isExit>false</isExit>
+            </XMLElement>
+            <XMLElement>
+              <Id>29a8a052-62a1-45e4-b7d8-5e79e9074292</Id>
+              <elemType>BehaviourNode</elemType>
+              <secondType>LoopUntilFail</secondType>
+              <thirdType />
+              <fourthType />
+              <name>New LoopUntilFail Node</name>
+              <windowPosX>578</windowPosX>
+              <windowPosY>479</windowPosY>
+              <nodes>
+                <XMLElement>
+                  <Id>128c2795-e1b3-47b9-b920-9604f31a3651</Id>
+                  <elemType>BehaviourNode</elemType>
+                  <secondType>Inverter</secondType>
+                  <thirdType />
+                  <fourthType />
+                  <name>New Inverter Node</name>
+                  <windowPosX>579</windowPosX>
+                  <windowPosY>601</windowPosY>
+                  <nodes>
+                    <XMLElement>
+                      <Id>caff21d8-e657-43b1-8b20-776c2b61036f</Id>
+                      <elemType>BehaviourNode</elemType>
+                      <secondType>Selector</secondType>
+                      <thirdType />
+                      <fourthType />
+                      <name>Esperar</name>
+                      <windowPosX>335</windowPosX>
+                      <windowPosY>686</windowPosY>
+                      <nodes>
+                        <XMLElement>
+                          <Id>c5f17519-5f6d-495c-9cdd-b72940a65674</Id>
+                          <elemType>BehaviourNode</elemType>
+                          <secondType>Leaf</secondType>
+                          <thirdType />
+                          <fourthType />
+                          <name>¿El contador ha finalizado?</name>
+                          <windowPosX>239</windowPosX>
+                          <windowPosY>808</windowPosY>
+                          <nodes />
+                          <isRandom>false</isRandom>
+                          <isInfinite>false</isInfinite>
+                          <delayTime>0</delayTime>
+                          <Nloops>0</Nloops>
+                          <index>1</index>
+                          <variableMin>0</variableMin>
+                          <variableMax>0</variableMax>
+                          <slope>0</slope>
+                          <exp>0</exp>
+                          <displX>0</displX>
+                          <displY>0</displY>
+                          <weight>0</weight>
+                          <isExit>false</isExit>
+                        </XMLElement>
+                        <XMLElement>
+                          <Id>8523924b-3b47-48ff-af71-c8d92d44c2c5</Id>
+                          <elemType>BehaviourNode</elemType>
+                          <secondType>Sequence</secondType>
+                          <thirdType />
+                          <fourthType />
+                          <name>New Sequence Node 3</name>
+                          <windowPosX>455</windowPosX>
+                          <windowPosY>818</windowPosY>
+                          <nodes>
+                            <XMLElement>
+                              <Id>20d75327-c77f-4cbe-ba0a-fee07adf3b63</Id>
+                              <elemType>BehaviourNode</elemType>
+                              <secondType>Leaf</secondType>
+                              <thirdType />
+                              <fourthType />
+                              <name>¿Hay alguien en rango?</name>
+                              <windowPosX>362</windowPosX>
+                              <windowPosY>955</windowPosY>
+                              <nodes />
+                              <isRandom>false</isRandom>
+                              <isInfinite>false</isInfinite>
+                              <delayTime>0</delayTime>
+                              <Nloops>0</Nloops>
+                              <index>1</index>
+                              <variableMin>0</variableMin>
+                              <variableMax>0</variableMax>
+                              <slope>0</slope>
+                              <exp>0</exp>
+                              <displX>0</displX>
+                              <displY>0</displY>
+                              <weight>0</weight>
+                              <isExit>false</isExit>
+                            </XMLElement>
+                            <XMLElement>
+                              <Id>889068ac-e9b6-4644-9508-77038bcd3359</Id>
+                              <elemType>BehaviourNode</elemType>
+                              <secondType>Leaf</secondType>
+                              <thirdType />
+                              <fourthType />
+                              <name>Atacar 2</name>
+                              <windowPosX>538</windowPosX>
+                              <windowPosY>961</windowPosY>
+                              <nodes />
+                              <isRandom>false</isRandom>
+                              <isInfinite>false</isInfinite>
+                              <delayTime>0</delayTime>
+                              <Nloops>0</Nloops>
+                              <index>2</index>
+                              <variableMin>0</variableMin>
+                              <variableMax>0</variableMax>
+                              <slope>0</slope>
+                              <exp>0</exp>
+                              <displX>0</displX>
+                              <displY>0</displY>
+                              <weight>0</weight>
+                              <isExit>false</isExit>
+                            </XMLElement>
+                          </nodes>
+                          <isRandom>false</isRandom>
+                          <isInfinite>false</isInfinite>
+                          <delayTime>0</delayTime>
+                          <Nloops>0</Nloops>
+                          <index>2</index>
+                          <variableMin>0</variableMin>
+                          <variableMax>0</variableMax>
+                          <slope>0</slope>
+                          <exp>0</exp>
+                          <displX>0</displX>
+                          <displY>0</displY>
+                          <weight>0</weight>
+                          <isExit>false</isExit>
+                        </XMLElement>
+                        <XMLElement>
+                          <Id>4fc7a559-ad5f-4918-ab88-125fd20ad04b</Id>
+                          <elemType>BehaviourNode</elemType>
+                          <secondType>Leaf</secondType>
+                          <thirdType />
+                          <fourthType />
+                          <name>Contador aumenta</name>
+                          <windowPosX>638</windowPosX>
+                          <windowPosY>803</windowPosY>
+                          <nodes />
+                          <isRandom>false</isRandom>
+                          <isInfinite>false</isInfinite>
+                          <delayTime>0</delayTime>
+                          <Nloops>0</Nloops>
+                          <index>3</index>
+                          <variableMin>0</variableMin>
+                          <variableMax>0</variableMax>
+                          <slope>0</slope>
+                          <exp>0</exp>
+                          <displX>0</displX>
+                          <displY>0</displY>
+                          <weight>0</weight>
+                          <isExit>false</isExit>
+                        </XMLElement>
+                      </nodes>
+                      <isRandom>false</isRandom>
+                      <isInfinite>false</isInfinite>
+                      <delayTime>0</delayTime>
+                      <Nloops>0</Nloops>
+                      <index>0</index>
+                      <variableMin>0</variableMin>
+                      <variableMax>0</variableMax>
+                      <slope>0</slope>
+                      <exp>0</exp>
+                      <displX>0</displX>
+                      <displY>0</displY>
+                      <weight>0</weight>
+                      <isExit>false</isExit>
+                    </XMLElement>
+                  </nodes>
+                  <isRandom>false</isRandom>
+                  <isInfinite>false</isInfinite>
+                  <delayTime>0</delayTime>
+                  <Nloops>0</Nloops>
+                  <index>0</index>
+                  <variableMin>0</variableMin>
+                  <variableMax>0</variableMax>
+                  <slope>0</slope>
+                  <exp>0</exp>
+                  <displX>0</displX>
+                  <displY>0</displY>
+                  <weight>0</weight>
+                  <isExit>false</isExit>
+                </XMLElement>
+              </nodes>
+              <isRandom>false</isRandom>
+              <isInfinite>false</isInfinite>
+              <delayTime>0</delayTime>
+              <Nloops>0</Nloops>
+              <index>3</index>
+              <variableMin>0</variableMin>
+              <variableMax>0</variableMax>
+              <slope>0</slope>
+              <exp>0</exp>
+              <displX>0</displX>
+              <displY>0</displY>
+              <weight>0</weight>
+              <isExit>false</isExit>
+            </XMLElement>
+          </nodes>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>1</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <weight>0</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>0e506068-7266-44c2-94a1-4b6314fbe19a</Id>
+          <elemType>BehaviourNode</elemType>
+          <secondType>Sequence</secondType>
+          <thirdType />
+          <fourthType />
+          <name>Power up</name>
+          <windowPosX>739</windowPosX>
+          <windowPosY>289</windowPosY>
+          <nodes>
+            <XMLElement>
+              <Id>50cc036a-68a3-4553-a2b4-871c2add10e2</Id>
+              <elemType>BehaviourNode</elemType>
+              <secondType>Leaf</secondType>
+              <thirdType />
+              <fourthType />
+              <name>¿Está el power up en rango de vision?</name>
+              <windowPosX>581</windowPosX>
+              <windowPosY>364</windowPosY>
+              <nodes />
+              <isRandom>false</isRandom>
+              <isInfinite>false</isInfinite>
+              <delayTime>0</delayTime>
+              <Nloops>0</Nloops>
+              <index>1</index>
+              <variableMin>0</variableMin>
+              <variableMax>0</variableMax>
+              <slope>0</slope>
+              <exp>0</exp>
+              <displX>0</displX>
+              <displY>0</displY>
+              <weight>0</weight>
+              <isExit>false</isExit>
+            </XMLElement>
+            <XMLElement>
+              <Id>5b72d4b0-0868-4537-99a0-8299e5312488</Id>
+              <elemType>BehaviourNode</elemType>
+              <secondType>Leaf</secondType>
+              <thirdType />
+              <fourthType />
+              <name>Moverse al power up</name>
+              <windowPosX>746</windowPosX>
+              <windowPosY>417</windowPosY>
+              <nodes />
+              <isRandom>false</isRandom>
+              <isInfinite>false</isInfinite>
+              <delayTime>0</delayTime>
+              <Nloops>0</Nloops>
+              <index>2</index>
+              <variableMin>0</variableMin>
+              <variableMax>0</variableMax>
+              <slope>0</slope>
+              <exp>0</exp>
+              <displX>0</displX>
+              <displY>0</displY>
+              <weight>0</weight>
+              <isExit>false</isExit>
+            </XMLElement>
+            <XMLElement>
+              <Id>9ad8d286-f57a-4e5b-81c9-47976a7c444f</Id>
+              <elemType>BehaviourNode</elemType>
+              <secondType>Leaf</secondType>
+              <thirdType />
+              <fourthType />
+              <name>Coger power up</name>
+              <windowPosX>913</windowPosX>
+              <windowPosY>368</windowPosY>
+              <nodes />
+              <isRandom>false</isRandom>
+              <isInfinite>false</isInfinite>
+              <delayTime>0</delayTime>
+              <Nloops>0</Nloops>
+              <index>3</index>
+              <variableMin>0</variableMin>
+              <variableMax>0</variableMax>
+              <slope>0</slope>
+              <exp>0</exp>
+              <displX>0</displX>
+              <displY>0</displY>
+              <weight>0</weight>
+              <isExit>false</isExit>
+            </XMLElement>
+            <XMLElement>
+              <Id>46c5f361-bc3e-424d-9bd1-737a9ef587ac</Id>
+              <elemType>BehaviourNode</elemType>
+              <secondType>Succeeder</secondType>
+              <thirdType />
+              <fourthType />
+              <name>New Succeeder Node</name>
+              <windowPosX>915</windowPosX>
+              <windowPosY>482</windowPosY>
+              <nodes>
+                <XMLElement>
+                  <Id>1297d31f-c0b3-4eea-a608-f0a2b2e87ff3</Id>
+                  <elemType>BehaviourNode</elemType>
+                  <secondType>Sequence</secondType>
+                  <thirdType />
+                  <fourthType />
+                  <name>Aumento de velocidad</name>
+                  <windowPosX>899</windowPosX>
+                  <windowPosY>573</windowPosY>
+                  <nodes>
+                    <XMLElement>
+                      <Id>646b3ad1-11aa-4b70-8d81-0afe520ccda4</Id>
+                      <elemType>BehaviourNode</elemType>
+                      <secondType>Leaf</secondType>
+                      <thirdType />
+                      <fourthType />
+                      <name>¿Tiene 5 power ups?</name>
+                      <windowPosX>840</windowPosX>
+                      <windowPosY>711</windowPosY>
+                      <nodes />
+                      <isRandom>false</isRandom>
+                      <isInfinite>false</isInfinite>
+                      <delayTime>0</delayTime>
+                      <Nloops>0</Nloops>
+                      <index>1</index>
+                      <variableMin>0</variableMin>
+                      <variableMax>0</variableMax>
+                      <slope>0</slope>
+                      <exp>0</exp>
+                      <displX>0</displX>
+                      <displY>0</displY>
+                      <weight>0</weight>
+                      <isExit>false</isExit>
+                    </XMLElement>
+                    <XMLElement>
+                      <Id>158ed572-c0ed-4ee3-8028-22aaa9d41b91</Id>
+                      <elemType>BehaviourNode</elemType>
+                      <secondType>Leaf</secondType>
+                      <thirdType />
+                      <fourthType />
+                      <name>Aumenta la velocidad</name>
+                      <windowPosX>1024</windowPosX>
+                      <windowPosY>709</windowPosY>
+                      <nodes />
+                      <isRandom>false</isRandom>
+                      <isInfinite>false</isInfinite>
+                      <delayTime>0</delayTime>
+                      <Nloops>0</Nloops>
+                      <index>2</index>
+                      <variableMin>0</variableMin>
+                      <variableMax>0</variableMax>
+                      <slope>0</slope>
+                      <exp>0</exp>
+                      <displX>0</displX>
+                      <displY>0</displY>
+                      <weight>0</weight>
+                      <isExit>false</isExit>
+                    </XMLElement>
+                  </nodes>
+                  <isRandom>false</isRandom>
+                  <isInfinite>false</isInfinite>
+                  <delayTime>0</delayTime>
+                  <Nloops>0</Nloops>
+                  <index>0</index>
+                  <variableMin>0</variableMin>
+                  <variableMax>0</variableMax>
+                  <slope>0</slope>
+                  <exp>0</exp>
+                  <displX>0</displX>
+                  <displY>0</displY>
+                  <weight>0</weight>
+                  <isExit>false</isExit>
+                </XMLElement>
+              </nodes>
+              <isRandom>false</isRandom>
+              <isInfinite>false</isInfinite>
+              <delayTime>0</delayTime>
+              <Nloops>0</Nloops>
+              <index>4</index>
+              <variableMin>0</variableMin>
+              <variableMax>0</variableMax>
+              <slope>0</slope>
+              <exp>0</exp>
+              <displX>0</displX>
+              <displY>0</displY>
+              <weight>0</weight>
+              <isExit>false</isExit>
+            </XMLElement>
+          </nodes>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>2</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <weight>0</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>4456f6b6-57b0-48d7-a0c7-880ccc118fb6</Id>
+          <elemType>BehaviourNode</elemType>
+          <secondType>Sequence</secondType>
+          <thirdType />
+          <fourthType />
+          <name>Atacar</name>
+          <windowPosX>1196</windowPosX>
+          <windowPosY>264</windowPosY>
+          <nodes>
+            <XMLElement>
+              <Id>e7d70420-b211-4128-8cd0-101e504caf8f</Id>
+              <elemType>BehaviourNode</elemType>
+              <secondType>Leaf</secondType>
+              <thirdType />
+              <fourthType />
+              <name>¿Hay alguien en rango de ataque?</name>
+              <windowPosX>1056</windowPosX>
+              <windowPosY>396</windowPosY>
+              <nodes />
+              <isRandom>false</isRandom>
+              <isInfinite>false</isInfinite>
+              <delayTime>0</delayTime>
+              <Nloops>0</Nloops>
+              <index>1</index>
+              <variableMin>0</variableMin>
+              <variableMax>0</variableMax>
+              <slope>0</slope>
+              <exp>0</exp>
+              <displX>0</displX>
+              <displY>0</displY>
+              <weight>0</weight>
+              <isExit>false</isExit>
+            </XMLElement>
+            <XMLElement>
+              <Id>c148c1e7-448a-457e-b083-ecc2dbf5a18f</Id>
+              <elemType>BehaviourNode</elemType>
+              <secondType>LoopUntilFail</secondType>
+              <thirdType />
+              <fourthType />
+              <name>New LoopUntilFail Node 1</name>
+              <windowPosX>1293</windowPosX>
+              <windowPosY>395</windowPosY>
+              <nodes>
+                <XMLElement>
+                  <Id>46a00cbe-f7cc-481a-b7c7-d33ef55dc047</Id>
+                  <elemType>BehaviourNode</elemType>
+                  <secondType>Sequence</secondType>
+                  <thirdType />
+                  <fourthType />
+                  <name>Atacando</name>
+                  <windowPosX>1296</windowPosX>
+                  <windowPosY>543</windowPosY>
+                  <nodes>
+                    <XMLElement>
+                      <Id>e4b64fd7-ee6f-41be-8930-78692b0c46d2</Id>
+                      <elemType>BehaviourNode</elemType>
+                      <secondType>Leaf</secondType>
+                      <thirdType />
+                      <fourthType />
+                      <name>¿Está dentro del campo de visión?</name>
+                      <windowPosX>1173</windowPosX>
+                      <windowPosY>655</windowPosY>
+                      <nodes />
+                      <isRandom>false</isRandom>
+                      <isInfinite>false</isInfinite>
+                      <delayTime>0</delayTime>
+                      <Nloops>0</Nloops>
+                      <index>1</index>
+                      <variableMin>0</variableMin>
+                      <variableMax>0</variableMax>
+                      <slope>0</slope>
+                      <exp>0</exp>
+                      <displX>0</displX>
+                      <displY>0</displY>
+                      <weight>0</weight>
+                      <isExit>false</isExit>
+                    </XMLElement>
+                    <XMLElement>
+                      <Id>49306b7d-64b5-470a-906e-dc2001e9214b</Id>
+                      <elemType>BehaviourNode</elemType>
+                      <secondType>Leaf</secondType>
+                      <thirdType />
+                      <fourthType />
+                      <name>Moverse hacia él</name>
+                      <windowPosX>1314</windowPosX>
+                      <windowPosY>653</windowPosY>
+                      <nodes />
+                      <isRandom>false</isRandom>
+                      <isInfinite>false</isInfinite>
+                      <delayTime>0</delayTime>
+                      <Nloops>0</Nloops>
+                      <index>2</index>
+                      <variableMin>0</variableMin>
+                      <variableMax>0</variableMax>
+                      <slope>0</slope>
+                      <exp>0</exp>
+                      <displX>0</displX>
+                      <displY>0</displY>
+                      <weight>0</weight>
+                      <isExit>false</isExit>
+                    </XMLElement>
+                    <XMLElement>
+                      <Id>b621f883-6f7e-4eb2-b08e-bb66c63dac46</Id>
+                      <elemType>BehaviourNode</elemType>
+                      <secondType>Succeeder</secondType>
+                      <thirdType />
+                      <fourthType />
+                      <name>New Succeeder Node 1</name>
+                      <windowPosX>1364</windowPosX>
+                      <windowPosY>717</windowPosY>
+                      <nodes>
+                        <XMLElement>
+                          <Id>c9c652a5-d6c6-415e-8ff6-6b74c0fb5f02</Id>
+                          <elemType>BehaviourNode</elemType>
+                          <secondType>Sequence</secondType>
+                          <thirdType />
+                          <fourthType />
+                          <name>Comprobación del ataque</name>
+                          <windowPosX>1193</windowPosX>
+                          <windowPosY>774</windowPosY>
+                          <nodes>
+                            <XMLElement>
+                              <Id>462f3b4b-1d85-4fd1-afe0-39bc41daef70</Id>
+                              <elemType>BehaviourNode</elemType>
+                              <secondType>Leaf</secondType>
+                              <thirdType />
+                              <fourthType />
+                              <name>¿En distancia para atacarlo?</name>
+                              <windowPosX>1128</windowPosX>
+                              <windowPosY>887</windowPosY>
+                              <nodes />
+                              <isRandom>false</isRandom>
+                              <isInfinite>false</isInfinite>
+                              <delayTime>0</delayTime>
+                              <Nloops>0</Nloops>
+                              <index>1</index>
+                              <variableMin>0</variableMin>
+                              <variableMax>0</variableMax>
+                              <slope>0</slope>
+                              <exp>0</exp>
+                              <displX>0</displX>
+                              <displY>0</displY>
+                              <weight>0</weight>
+                              <isExit>false</isExit>
+                            </XMLElement>
+                            <XMLElement>
+                              <Id>2ba35a6d-46f3-44d9-a91a-35412494335e</Id>
+                              <elemType>BehaviourNode</elemType>
+                              <secondType>Leaf</secondType>
+                              <thirdType />
+                              <fourthType />
+                              <name>Atacarlo</name>
+                              <windowPosX>1355</windowPosX>
+                              <windowPosY>903</windowPosY>
+                              <nodes />
+                              <isRandom>false</isRandom>
+                              <isInfinite>false</isInfinite>
+                              <delayTime>0</delayTime>
+                              <Nloops>0</Nloops>
+                              <index>2</index>
+                              <variableMin>0</variableMin>
+                              <variableMax>0</variableMax>
+                              <slope>0</slope>
+                              <exp>0</exp>
+                              <displX>0</displX>
+                              <displY>0</displY>
+                              <weight>0</weight>
+                              <isExit>false</isExit>
+                            </XMLElement>
+                          </nodes>
+                          <isRandom>false</isRandom>
+                          <isInfinite>false</isInfinite>
+                          <delayTime>0</delayTime>
+                          <Nloops>0</Nloops>
+                          <index>0</index>
+                          <variableMin>0</variableMin>
+                          <variableMax>0</variableMax>
+                          <slope>0</slope>
+                          <exp>0</exp>
+                          <displX>0</displX>
+                          <displY>0</displY>
+                          <weight>0</weight>
+                          <isExit>false</isExit>
+                        </XMLElement>
+                      </nodes>
+                      <isRandom>false</isRandom>
+                      <isInfinite>false</isInfinite>
+                      <delayTime>0</delayTime>
+                      <Nloops>0</Nloops>
+                      <index>3</index>
+                      <variableMin>0</variableMin>
+                      <variableMax>0</variableMax>
+                      <slope>0</slope>
+                      <exp>0</exp>
+                      <displX>0</displX>
+                      <displY>0</displY>
+                      <weight>0</weight>
+                      <isExit>false</isExit>
+                    </XMLElement>
+                  </nodes>
+                  <isRandom>false</isRandom>
+                  <isInfinite>false</isInfinite>
+                  <delayTime>0</delayTime>
+                  <Nloops>0</Nloops>
+                  <index>0</index>
+                  <variableMin>0</variableMin>
+                  <variableMax>0</variableMax>
+                  <slope>0</slope>
+                  <exp>0</exp>
+                  <displX>0</displX>
+                  <displY>0</displY>
+                  <weight>0</weight>
+                  <isExit>false</isExit>
+                </XMLElement>
+              </nodes>
+              <isRandom>false</isRandom>
+              <isInfinite>false</isInfinite>
+              <delayTime>0</delayTime>
+              <Nloops>0</Nloops>
+              <index>2</index>
+              <variableMin>0</variableMin>
+              <variableMax>0</variableMax>
+              <slope>0</slope>
+              <exp>0</exp>
+              <displX>0</displX>
+              <displY>0</displY>
+              <weight>0</weight>
+              <isExit>false</isExit>
+            </XMLElement>
+          </nodes>
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>3</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <weight>0</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+        <XMLElement>
+          <Id>40e04028-6d92-4b71-b829-e48425a250cd</Id>
+          <elemType>BehaviourNode</elemType>
+          <secondType>Leaf</secondType>
+          <thirdType />
+          <fourthType />
+          <name>Moverse</name>
+          <windowPosX>1449</windowPosX>
+          <windowPosY>272</windowPosY>
+          <nodes />
+          <isRandom>false</isRandom>
+          <isInfinite>false</isInfinite>
+          <delayTime>0</delayTime>
+          <Nloops>0</Nloops>
+          <index>4</index>
+          <variableMin>0</variableMin>
+          <variableMax>0</variableMax>
+          <slope>0</slope>
+          <exp>0</exp>
+          <displX>0</displX>
+          <displY>0</displY>
+          <weight>0</weight>
+          <isExit>false</isExit>
+        </XMLElement>
+      </nodes>
+      <isRandom>false</isRandom>
+      <isInfinite>false</isInfinite>
+      <delayTime>0</delayTime>
+      <Nloops>0</Nloops>
+      <index>0</index>
+      <variableMin>0</variableMin>
+      <variableMax>0</variableMax>
+      <slope>0</slope>
+      <exp>0</exp>
+      <displX>0</displX>
+      <displY>0</displY>
+      <weight>0</weight>
+      <isExit>false</isExit>
+    </XMLElement>
+  </nodes>
+  <transitions />
+  <isRandom>false</isRandom>
+  <isInfinite>false</isInfinite>
+  <delayTime>0</delayTime>
+  <Nloops>0</Nloops>
+  <index>0</index>
+  <variableMin>0</variableMin>
+  <variableMax>0</variableMax>
+  <slope>0</slope>
+  <exp>0</exp>
+  <displX>0</displX>
+  <displY>0</displY>
+  <weight>0</weight>
+  <isExit>false</isExit>
+</XMLElement>
