@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,9 @@ public class EntityMovement : MonoBehaviour
     public bool isFleeing;
     public bool isFollowing;
 
+    // Events used in display control of actions carried by the Character
+    public event Action onMoving, onFleeing, onFollowing, onResting;
+
     private void Awake()
     {
         destination = transform.position;
@@ -29,6 +33,9 @@ public class EntityMovement : MonoBehaviour
     {
         if (transform.position != destination && !isResting && !isFleeing) isMoving = true;
         else if (OnLocation(destination)) isMoving = false;
+
+        if (followingObject == null) isFollowing = false;
+        if (fleeingEnemy == null) isFleeing = false;
 
         if (isFollowing)
         {
@@ -48,7 +55,7 @@ public class EntityMovement : MonoBehaviour
             agent.Move((transform.position - fleeingEnemy.transform.position).normalized * agent.speed * Time.deltaTime);
         }
 
-        if (isMoving) agent.destination = destination;
+        if (isMoving) { agent.destination = destination; }
     }
 
     /* Movement */
@@ -60,6 +67,7 @@ public class EntityMovement : MonoBehaviour
     {
         Debug.Log(gameObject.name + ": Move Random");
         destination = NavMeshUtils.GetRandomPoint(transform.position, maxDistance);
+        if (onMoving != null) onMoving();
     }
     public void Follow(GameObject target)
     {
@@ -67,19 +75,13 @@ public class EntityMovement : MonoBehaviour
         isFollowing = true;
         isFleeing = false;
         followingObject = target;
-        //StartCoroutine(FollowCoroutine(target));
-    }
-    IEnumerator FollowCoroutine(GameObject target)
-    {
-        while (!EntityInv.inRange(gameObject, target)) yield return new WaitForSeconds(0.5f);
-        isFollowing = false;
-        //agent.ResetPath();
-        agent.destination = transform.position;
+        if(onFollowing != null) onFollowing();
     }
 
     /* Rest */
     public void Rest(float seconds)
     {
+        if(onResting != null) onResting();
         StartCoroutine(RestCorroutine(seconds));
     }
     IEnumerator RestCorroutine(float seconds)
@@ -99,17 +101,20 @@ public class EntityMovement : MonoBehaviour
     {
         Debug.Log(gameObject.name + ": Flee from " + obj.name);
         gameObject.GetComponent<EntityInv>().StopAllCoroutines();
+        gameObject.GetComponent<EntityInv>().isPickingObject = false;
         isFleeing = true;
         isMoving = false;
         isFollowing = false;
         agent.ResetPath();
         fleeingEnemy = obj;
+        if(onFleeing != null) onFleeing();
         StartCoroutine(FleeCoroutine(stamina));
     }
     IEnumerator FleeCoroutine(int stamina)
     {
         yield return new WaitForSeconds(stamina);
         isFleeing = false;
+        Rest(1.0f);
     }
 
     /* Directions */

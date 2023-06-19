@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class FieldOfView : MonoBehaviour
     public float awarenessRadius;
     [Range(0, 360)]
     public float viewAngle;
-    [SerializeField] List<GameObject> allies;
+    public List<GameObject> allies;
 
     [Header("Masks")]
     [SerializeField] LayerMask targetMask;
@@ -25,19 +26,26 @@ public class FieldOfView : MonoBehaviour
     public GameObject enemy;
     public GameObject allyHurt;
 
+    private void Awake()
+    {
+        FindAllies();
+    }
     private void Start()
     {
         StartCoroutine(FindTargetsWithDelay(0.2f));
     }
-
     public void FindAlliesHurt() 
     {
+        allyHurt = null;
         foreach (GameObject ally in allies)
+        {
+            if (ally == null) continue;
             if (ally.GetComponent<EntityInteraction>().HP <= ally.GetComponent<EntityInteraction>().maxHP / 2)
             {
                 allyHurt = ally;
                 break;
             }
+        }
     }
     public void FindVisibleTargets()
     {
@@ -51,6 +59,11 @@ public class FieldOfView : MonoBehaviour
 
         Collider[] targetsInAwarenessRadius = Physics.OverlapSphere(transform.position, awarenessRadius, targetMask);
         FilterAwarenessColliders(targetsInAwarenessRadius);
+    }
+    public void FindAllies()
+    {
+        allies.Clear();
+        foreach (EntityInteraction entity in FindObjectsOfType<EntityInteraction>().Where((x) => x.team == GetComponent<EntityInteraction>().team)) allies.Add(entity.gameObject);
     }
     IEnumerator FindTargetsWithDelay(float delay)
     {
@@ -72,9 +85,9 @@ public class FieldOfView : MonoBehaviour
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) continue;
 
-                if (collider.gameObject.tag == "Coin" && coin == null) coin = collider.gameObject;
-                if (collider.gameObject.tag == "Weapon" && weapon == null) weapon = collider.gameObject;
-                if (collider.gameObject.tag == "Armor" && armor == null) armor = collider.gameObject;
+                if (collider.transform.parent.gameObject.tag == "Coin" && coin == null) coin = collider.transform.parent.gameObject;
+                if (collider.transform.parent.gameObject.tag == "Weapon" && weapon == null) weapon = collider.transform.parent.gameObject;
+                if (collider.transform.parent.gameObject.tag == "Armor" && armor == null) armor = collider.transform.parent.gameObject;
                 if (collider.gameObject.tag == "Entity" && enemy == null &&
                     collider.gameObject.GetComponent<EntityInteraction>().team != entityInteraction.team) enemy = collider.gameObject;
             }
@@ -84,9 +97,9 @@ public class FieldOfView : MonoBehaviour
     {
         foreach (Collider collider in colliders)
         {
-            if (collider.gameObject.tag == "Coin" && coin == null) coin = collider.gameObject;
-            if (collider.gameObject.tag == "Weapon" && weapon == null) weapon = collider.gameObject;
-            if (collider.gameObject.tag == "Armor" && armor == null) armor = collider.gameObject;
+            if (collider.transform.parent.gameObject.tag == "Coin" && coin == null) coin = collider.transform.parent.gameObject;
+            if (collider.transform.parent.gameObject.tag == "Weapon" && weapon == null) weapon = collider.transform.parent.gameObject;
+            if (collider.transform.parent.gameObject.tag == "Armor" && armor == null) armor = collider.transform.parent.gameObject;
             if (collider.gameObject.tag == "Entity" && enemy == null &&
                 collider.gameObject.GetComponent<EntityInteraction>().team != entityInteraction.team) enemy = collider.gameObject;
         }

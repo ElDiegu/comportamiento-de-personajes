@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,9 @@ public class EntityInv : MonoBehaviour
     [Header("Character View")]
     [SerializeField] FieldOfView fow;
 
+    // Events used in display control of actions carried by the Character
+    public event Action onPicking;
+
     private void Update()
     {
         coinDetected = fow.coin != null;
@@ -26,12 +30,13 @@ public class EntityInv : MonoBehaviour
     }
     public static bool inRange(GameObject self, GameObject obj)
     {
-        return Vector3.Distance(self.transform.position, obj.transform.position) <= 0.5f;
+        return Vector3.Distance(self.transform.position, obj.transform.position) <= 1.0f;
     }
     public void PickObject(GameObject obj)
     {
         Debug.Log(gameObject.name + ": PickObject " + obj.name);
         isPickingObject = true;
+        if(onPicking != null) onPicking();
         StartCoroutine(PickObjectCorroutine(obj, 3.0f));
     }
     IEnumerator PickObjectCorroutine(GameObject obj, float seconds)
@@ -39,13 +44,11 @@ public class EntityInv : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         Debug.Log(gameObject.name + " Picked " + obj.name);
 
-        if (obj.tag == "Coin") totalCoins++;
-        if (obj.tag == "Armor") armor += obj.GetComponent<Armor>().armor;
-        if (obj.tag == "Weapon") weapon += obj.GetComponent<Weapon>().damage;
+        if (obj.tag == "Coin") { totalCoins++; fow.coin = null; coinDetected = false; }
+        if (obj.tag == "Armor") { armor += obj.GetComponent<Armor>().armor; fow.armor = null; armorDetected = false; }
+        if (obj.tag == "Weapon") { weapon += obj.GetComponent<Weapon>().damage; fow.weapon = null; weaponDetected = false; }
 
-        obj.gameObject.transform.position += new Vector3(0, 10000, 0);
         Destroy(obj);
-        fow.FindVisibleTargets();
         isPickingObject = false;
     }
 }

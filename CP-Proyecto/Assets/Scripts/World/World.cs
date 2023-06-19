@@ -19,9 +19,9 @@ public class World : MonoBehaviour
     [SerializeField] LayerMask objectLayer;
     private void Start()
     {
-        StartCoroutine(CoinGenerator());
-        StartCoroutine(ArmorGenerator());
-        StartCoroutine(WeaponGenerator());
+        //StartCoroutine(CoinGenerator());
+        //StartCoroutine(ArmorGenerator());
+        //StartCoroutine(WeaponGenerator());
     }
     IEnumerator CoinGenerator()
     {
