@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class DefaultGameManager : MonoBehaviour
 {
     [Header("Teams")]
     [SerializeField] List<List<GameObject>> teams = new List<List<GameObject>>(4);

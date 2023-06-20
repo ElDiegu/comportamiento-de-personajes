@@ -52,6 +52,7 @@ public class EntityMovement : MonoBehaviour
         if (isFleeing)
         {
             isResting = false;
+            if(agent != null) agent.destination = transform.position;
             transform.rotation = Quaternion.LookRotation(Direction2D(gameObject, fleeingEnemy), transform.up);
             agent.Move((transform.position - fleeingEnemy.transform.position).normalized * agent.speed * Time.deltaTime);
         }
@@ -107,7 +108,7 @@ public class EntityMovement : MonoBehaviour
         isMoving = false;
         isFollowing = false;
         isResting = false;
-        agent.ResetPath();
+        agent.destination = transform.position;
         fleeingEnemy = obj;
         if(onFleeing != null) onFleeing();
         StartCoroutine(FleeCoroutine(stamina));

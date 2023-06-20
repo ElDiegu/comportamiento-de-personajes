@@ -38,12 +38,14 @@ public class BossInv : MonoBehaviour
     IEnumerator PickObjectCorroutine(GameObject obj, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        if (obj.tag == "Power Up") _totalPowerUp++;
+        if (obj != null)
+        {
+            if (obj.tag == "Power Up") _totalPowerUp++;
 
-        obj.gameObject.transform.position += new Vector3(0, 10000, 0);
-        Destroy(obj);
-        fow.FindVisibleTargets();
-        Debug.Log("holi");
+            obj.gameObject.transform.position += new Vector3(0, 10000, 0);
+            Destroy(obj);
+            fow.FindVisibleTargets();
+        }
         isPickingObject = false;
     }
     public void IncreaseVelocity()

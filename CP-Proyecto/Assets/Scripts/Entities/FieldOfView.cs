@@ -54,11 +54,11 @@ public class FieldOfView : MonoBehaviour
         armor = null;
         enemy = null;
 
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-        FilterColliders(targetsInViewRadius);
-
         Collider[] targetsInAwarenessRadius = Physics.OverlapSphere(transform.position, awarenessRadius, targetMask);
         FilterAwarenessColliders(targetsInAwarenessRadius);
+
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        FilterColliders(targetsInViewRadius);
     }
     public void FindAllies()
     {

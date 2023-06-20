@@ -52,11 +52,7 @@ public class EntityInteraction : MonoBehaviour
     IEnumerator GetKilled()
     {
         Debug.Log(gameObject + " is dead");
-        GetComponent<Collider>().enabled = false;
-        GetComponent<EntityMovement>().enabled = false;
-        GetComponent<EntityInv>().enabled = false;
-        GetComponent<NavMeshAgent>().enabled = false;
-        GetComponentInChildren<Animator>().enabled = false;
+        
         if (onDying != null) onDying();
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
@@ -89,5 +85,16 @@ public class EntityInteraction : MonoBehaviour
     public bool isDead()
     {
         return this.HP <= 0;
+    }
+    public void DisableComponents()
+    {
+        GetComponent<Collider>().enabled = false;
+        GetComponent<EntityMovement>().enabled = false;
+        GetComponent<EntityInv>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<AggressiveBehaviour>().enabled = false;
+        GetComponent<CowardBehaviour>().enabled = false;
+        GetComponent<HelperBehaviour>().enabled = false;
+        GetComponentInChildren<Animator>().enabled = false;
     }
 }
