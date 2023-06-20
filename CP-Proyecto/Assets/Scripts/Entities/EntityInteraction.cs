@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EntityInteraction : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class EntityInteraction : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         GetComponent<EntityMovement>().enabled = false;
         GetComponent<EntityInv>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
         GetComponentInChildren<Animator>().enabled = false;
         if (onDying != null) onDying();
         yield return new WaitForSeconds(1.0f);
@@ -67,14 +69,16 @@ public class EntityInteraction : MonoBehaviour
     }
     public void Heal(GameObject ally)
     {
+        if (ally == null) return;
         Debug.Log(gameObject.name + ": Healing " + ally.name);
         if(onHealing != null) onHealing();
+        transform.rotation = Quaternion.LookRotation(EntityMovement.Direction2D(ally, gameObject), transform.up);
+        ally.GetComponent<EntityInteraction>().GetHealed(damage + gameObject.GetComponent<EntityInv>().weapon);
         StartCoroutine(HealCoroutine(ally));
     }
     IEnumerator HealCoroutine(GameObject ally)
     {
         isHealing = true;
-        ally.GetComponent<EntityInteraction>().GetHealed(damage + gameObject.GetComponent<EntityInv>().weapon);
         yield return new WaitForSeconds(1.0f);
         isHealing = false;
     }

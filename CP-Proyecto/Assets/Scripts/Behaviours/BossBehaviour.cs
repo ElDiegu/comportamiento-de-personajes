@@ -185,7 +185,7 @@ public class BossBehaviour : MonoBehaviour {
     
     private void ContadoraumentaAction()
     {
-        waitedTime += 10.0f * Time.deltaTime;
+        waitedTime += 1.0f * Time.deltaTime;
         Debug.Log(waitedTime);
     }
     private ReturnValues ContadoraumentaSuccessCheck()

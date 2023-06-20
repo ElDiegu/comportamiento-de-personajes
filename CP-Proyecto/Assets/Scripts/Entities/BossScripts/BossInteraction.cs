@@ -12,10 +12,11 @@ public class BossInteraction : MonoBehaviour
     [SerializeField] BossFieldOfView fow;
 
 
-    public bool Attack(GameObject enemy)
+    public void Attack(GameObject enemy)
     {
+        if (enemy == null) return;
+        enemy.GetComponent<EntityInteraction>().SufferDamage(enemy.GetComponent<EntityInteraction>().maxHP);
         StartCoroutine(AttackCoroutine());
-        return enemy.GetComponent<EntityInteraction>().SufferDamage(enemy.GetComponent<EntityInteraction>().maxHP);
     }
     IEnumerator AttackCoroutine()
     {

@@ -10,10 +10,6 @@ public class AnimationController : MonoBehaviour
     public EntityInv entityInv;
     public EntityInteraction entityInteraction;
 
-    public string isMoving;
-    public string isPickingObject;
-    public string isAttacking;
-
     // Start is called before the first frame update
     void Start()
     {

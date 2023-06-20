@@ -27,7 +27,7 @@ public class BossMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (transform.position != destination) isMoving = true;
+        if (!OnLocation(destination)) isMoving = true;
         else if (OnLocation(destination)) isMoving = false;
 
         if (isFollowing) destination = followingObject.transform.position;
@@ -79,7 +79,7 @@ public class BossMovement : MonoBehaviour
 
     public bool OnLocation(Vector3 destination)
     {
-        return transform.position.x == destination.x && transform.position.z == destination.z;
+        return Vector3.Distance(transform.position, destination) <= 0.1f;
     }
 
 }
