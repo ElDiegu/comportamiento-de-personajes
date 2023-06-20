@@ -25,6 +25,7 @@ public class EntityDisplayController : MonoBehaviour
         entityInv.onPicking += SetPickingState; ;
         entityInteraction.onAttacking += SetAttackingState;
         entityInteraction.onHealing += SetHealingState;
+        entityInteraction.onDying += SetDyingState;
     }
     private void Start()
     {
@@ -63,5 +64,9 @@ public class EntityDisplayController : MonoBehaviour
     private void SetPickingState()
     {
         state.text = $"State: picking {entityMovement.followingObject.name}";
+    }
+    private void SetDyingState()
+    {
+        state.text = $"State: dead";
     }
 }

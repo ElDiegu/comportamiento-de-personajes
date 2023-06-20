@@ -16,7 +16,9 @@ public class World : MonoBehaviour
     [SerializeField] GameObject coin;
     [SerializeField] GameObject armor;
     [SerializeField] GameObject weapon;
+    [SerializeField] GameObject bugCharacter;
     [SerializeField] GameObject objectOrganizer;
+    [SerializeField] GameObject characterOrganizer;
     [SerializeField] LayerMask objectLayer;
     private void Start()
     {
@@ -66,5 +68,9 @@ public class World : MonoBehaviour
     public void SwapGeneration()
     {
         genObjects = !genObjects;
+    }
+    public void SpawnBug()
+    {
+        Instantiate(bugCharacter, characterOrganizer.transform);
     }
 }

@@ -167,8 +167,8 @@ public class AggressiveBehaviour : MonoBehaviour {
         // Modify or add new Perceptions, see the guide for more
         EstaEnEnemigoPerception = Combatir_SubFSM.CreatePerception<ValuePerception>(() => EntityInv.inRange(gameObject, fow.enemy));
         NoEstaAtacandoPerception = Combatir_SubFSM.CreatePerception<ValuePerception>(() => !entityInteraction.isAttacking);
-        NoEstaParadoEstaEnEnemigoPerception = Combatir_SubFSM.CreatePerception<ValuePerception>(() => !entityMovement.isMoving && EntityInv.inRange(gameObject, fow.enemy));
-        NoEstaParadoNoEstaEnEnemigoPerception = Combatir_SubFSM.CreatePerception<ValuePerception>(() => !entityMovement.isMoving && !EntityInv.inRange(gameObject, fow.enemy));
+        NoEstaParadoEstaEnEnemigoPerception = Combatir_SubFSM.CreatePerception<ValuePerception>(() => !entityMovement.isResting && EntityInv.inRange(gameObject, fow.enemy));
+        NoEstaParadoNoEstaEnEnemigoPerception = Combatir_SubFSM.CreatePerception<ValuePerception>(() => !entityMovement.isResting && !EntityInv.inRange(gameObject, fow.enemy));
 
         // States
         Moverse2 = Combatir_SubFSM.CreateEntryState("Moverse");

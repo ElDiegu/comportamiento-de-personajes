@@ -14,6 +14,11 @@ public class Transition {
     public State StateTo { get; }
     public BehaviourEngine BehaviourEngine { get; }
     public Action action = null;
+    private string v;
+    private LeafNode elcontadorhafinalizado;
+    private PushPerception pushPerception;
+    private object stateNode;
+    private object behaviourTree;
 
     #endregion variables
 
@@ -215,6 +220,15 @@ public class Transition {
                 .OnExit(this.Name, () => Perception.Reset())
                 .InternalTransition(Perception, this.Name, () => ExitTransition(StateFrom, stateTo, subMachine.GetRootNode().ReturnValue, subMachine.GetState("Entry_Machine"), superMachine, subMachine));
         }
+    }
+
+    public Transition(string v, LeafNode elcontadorhafinalizado, PushPerception pushPerception, object stateNode, object behaviourTree)
+    {
+        this.v = v;
+        this.elcontadorhafinalizado = elcontadorhafinalizado;
+        this.pushPerception = pushPerception;
+        this.stateNode = stateNode;
+        this.behaviourTree = behaviourTree;
     }
 
     /// <summary>

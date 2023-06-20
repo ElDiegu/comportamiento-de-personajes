@@ -63,13 +63,15 @@ public class FieldOfView : MonoBehaviour
     public void FindAllies()
     {
         allies.Clear();
-        foreach (EntityInteraction entity in FindObjectsOfType<EntityInteraction>().Where((x) => x.team == GetComponent<EntityInteraction>().team)) allies.Add(entity.gameObject);
+        foreach (EntityInteraction entity in FindObjectsOfType<EntityInteraction>().Where((x) => x.team == GetComponent<EntityInteraction>().team && x != GetComponent<EntityInteraction>())) 
+            allies.Add(entity.gameObject);
     }
     IEnumerator FindTargetsWithDelay(float delay)
     {
         while (true)
         {
             FindVisibleTargets();
+            FindAllies();
             FindAlliesHurt();
             yield return new WaitForSeconds(delay);
         }

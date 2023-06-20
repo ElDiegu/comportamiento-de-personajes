@@ -32,6 +32,7 @@ public class InverterDecoratorNode : TreeNode {
             if(ReturnNodeValue() != ReturnValues.Running) {
                 ReturnToParent();
                 Child.Reset();
+                firstExecution = false;
             }
         }
     }

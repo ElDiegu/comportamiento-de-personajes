@@ -31,7 +31,7 @@ public class EntityMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (transform.position != destination && !isResting && !isFleeing) isMoving = true;
+        if (!OnLocation(destination) && !isResting && !isFleeing) isMoving = true;
         else if (OnLocation(destination)) isMoving = false;
 
         if (followingObject == null) isFollowing = false;
@@ -51,6 +51,7 @@ public class EntityMovement : MonoBehaviour
 
         if (isFleeing)
         {
+            isResting = false;
             transform.rotation = Quaternion.LookRotation(Direction2D(gameObject, fleeingEnemy), transform.up);
             agent.Move((transform.position - fleeingEnemy.transform.position).normalized * agent.speed * Time.deltaTime);
         }
@@ -93,7 +94,7 @@ public class EntityMovement : MonoBehaviour
     }
     public bool OnLocation(Vector3 destination)
     {
-        return transform.position.x == destination.x && transform.position.z == destination.z;
+        return Vector3.Distance(transform.position, destination) <= 0.1f;
     }
 
     /* Fleeing */
@@ -105,6 +106,7 @@ public class EntityMovement : MonoBehaviour
         isFleeing = true;
         isMoving = false;
         isFollowing = false;
+        isResting = false;
         agent.ResetPath();
         fleeingEnemy = obj;
         if(onFleeing != null) onFleeing();
