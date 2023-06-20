@@ -214,7 +214,7 @@ public class HelperBehaviour : MonoBehaviour {
         EstadoInicialPerception = HelperBehaviour_FSM.CreatePerception<ValuePerception>(() => true);
         HayAliadoHeridoPerception = HelperBehaviour_FSM.CreatePerception<ValuePerception>(() => entityInteraction.allyHurtDetected);
         EnemigoCercaPerception = HelperBehaviour_FSM.CreatePerception<ValuePerception>(() => entityInteraction.enemyDetected);
-        NoHayEnemigoCercaPerception = HelperBehaviour_FSM.CreatePerception<ValuePerception>(() => !entityInteraction.enemyDetected);
+        NoHayEnemigoCercaPerception = HelperBehaviour_FSM.CreatePerception<ValuePerception>(() => !entityInteraction.enemyDetected && !entityMovement.isFleeing);
         MonedaCercaPerception = HelperBehaviour_FSM.CreatePerception<ValuePerception>(() => entityInv.coinDetected);
         NoHayMonedaCercaPerception = HelperBehaviour_FSM.CreatePerception<ValuePerception>(() => !entityInv.coinDetected);
         ArmaduraCercaPerception = HelperBehaviour_FSM.CreatePerception<ValuePerception>(() => entityInv.armorDetected);

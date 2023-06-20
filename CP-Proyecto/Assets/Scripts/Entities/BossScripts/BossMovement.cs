@@ -30,7 +30,13 @@ public class BossMovement : MonoBehaviour
         if (!OnLocation(destination)) isMoving = true;
         else if (OnLocation(destination)) isMoving = false;
 
-        if (isFollowing) destination = followingObject.transform.position;
+        if (followingObject == null) isFollowing = false;
+
+        if (isFollowing)
+        {
+            transform.rotation = Quaternion.LookRotation(EntityMovement.Direction2D(followingObject, gameObject), transform.up);
+            destination = followingObject.transform.position;
+        }
 
         if (isMoving) agent.destination = destination;
     }

@@ -193,7 +193,7 @@ public class BossBehaviour : MonoBehaviour {
         return ReturnValues.Failed;
     }
     
-    private void DestruirMonedaAction(){ entityInv.PickObject(coinLooked); }
+    private void DestruirMonedaAction(){ if(coinLooked != null) entityInv.PickObject(coinLooked); }
     private ReturnValues DestruirMonedaSuccessCheck()
     {
         if (entityInv.isPickingObject)
